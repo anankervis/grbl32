@@ -76,12 +76,12 @@
 		<link>
 			<name>grbl</name>
 			<type>2</type>
-			<location>I:/core32/micro/stm32/GRBL32/grbl</location>
+			<location>C:/src/grbl32_anankervis/grbl</location>
 		</link>
 		<link>
 			<name>stm32</name>
 			<type>2</type>
-			<location>I:/core32/micro/stm32/GRBL32/stm32</location>
+			<location>C:/src/grbl32_anankervis/stm32</location>
 		</link>
 	</linkedResources>
 </projectDescription>

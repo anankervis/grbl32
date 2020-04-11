@@ -77,8 +77,10 @@ void Limit_IT_Start();
 */
 
 
+#ifdef STM32F13
 void Spindle_Disable();
 void Spindle_Enable();
+#endif
 
 
 void timing_init();

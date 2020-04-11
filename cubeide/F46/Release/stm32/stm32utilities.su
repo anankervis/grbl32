@@ -1,0 +1,17 @@
+stm32utilities.c:106:6:timing_init	0	static
+stm32utilities.c:113:7:ByteToBin	12	static
+stm32utilities.c:125:7:Int16ToBin	12	static
+stm32utilities.c:159:6:uart_sendch	0	static
+stm32utilities.c:153:6:uart_sendstr	8	static
+stm32utilities.c:139:6:uart_init	8	static
+stm32utilities.c:201:6:GPIO_ResetBits	0	static
+stm32utilities.c:205:6:GPIO_SetBits	0	static
+stm32utilities.c:356:9:SPIRead	32	static
+stm32utilities.c:263:6:DebugRead	24	static
+stm32utilities.c:382:19:SPIWrite	16	static
+stm32utilities.c:340:6:EnableLimitsINT	8	static
+stm32utilities.c:349:6:DisableLimitsINT	8	static
+stm32utilities.c:271:6:SPIInit	16	static
+stm32utilities.c:411:10:GetLimitsState	8	static
+stm32utilities.c:458:9:ReadInputByte	0	static
+stm32utilities.c:470:6:spi_limits_init	0	static

@@ -168,6 +168,7 @@ void uart_sendch(uint8_t uC)
 
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
+#ifdef STM32F13
 void Spindle_Disable()
 {
 #ifdef VARIABLE_SPINDLE_ENABLE_PIN
@@ -191,6 +192,7 @@ void Spindle_Enable()
 
   LL_TIM_EnableAllOutputs(SPINDLE_TIMER);
 }
+#endif
 
 
     //------------------------------------------------------------------------
