@@ -126,6 +126,7 @@ void _delay_ms(uint32_t x)
 */
 	//HAL_Delay(x);
 
+	// TODO(AN): uh...? this isn't one millisecond?
 	uint32_t mililoop = SystemCoreClock/1000;
 	for (uint32_t i=0; i< mililoop; i++)
 		__asm__ __volatile__("nop\n\t":::"memory");

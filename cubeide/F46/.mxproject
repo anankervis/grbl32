@@ -1,7 +1,7 @@
 [PreviousGenFiles]
-HeaderPath=I:/core32/micro/stm32/GRBL32/cubeide/F46/Inc
+HeaderPath=C:/src/grbl32_anankervis/cubeide/F46/Inc
 HeaderFiles=gpio.h;i2c.h;spi.h;tim.h;usart.h;stm32f4xx_it.h;stm32_assert.h;stm32f4xx_hal_conf.h;main.h;
-SourcePath=I:/core32/micro/stm32/GRBL32/cubeide/F46/Src
+SourcePath=C:/src/grbl32_anankervis/cubeide/F46/Src
 SourceFiles=gpio.c;i2c.c;spi.c;tim.c;usart.c;stm32f4xx_it.c;stm32f4xx_hal_msp.c;main.c;
 
 [PreviousLibFiles]
