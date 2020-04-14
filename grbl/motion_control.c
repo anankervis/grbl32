@@ -399,7 +399,7 @@ void mc_override_ctrl_update(uint8_t override_state)
 void mc_reset()
 {
 	// Only this function can set the system reset. Helps prevent multiple kill calls.
-	if(bit_isfalse(sys_rt_exec_state, EXEC_RESET))
+	if (bit_isfalse(sys_rt_exec_state, EXEC_RESET))
 	{
 		system_set_exec_state_flag(EXEC_RESET);
 
@@ -418,7 +418,11 @@ void mc_reset()
 			{ 
 				if (!sys_rt_exec_alarm) {system_set_exec_alarm(EXEC_ALARM_HOMING_FAIL_RESET); }
 			}
-			else { system_set_exec_alarm(EXEC_ALARM_ABORT_CYCLE); }
+			else
+			{
+				system_set_exec_alarm(EXEC_ALARM_ABORT_CYCLE);
+			}
+			
 			st_go_idle();  // Force kill steppers. Position has likely been lost.
 		}
 	}

@@ -365,10 +365,10 @@ void HandleStepSetIT(void)
 	busy = true;
 
 	// If there is no step segment, attempt to pop one from the stepper buffer
-	if(st.exec_segment == NULL)
+	if (st.exec_segment == NULL)
 	{
 		// Anything in the buffer? If so, load and initialize next step segment.
-		if(segment_buffer_head != segment_buffer_tail)
+		if (segment_buffer_head != segment_buffer_tail)
 		{
 			// Initialize new step segment and load number of steps to execute
 			st.exec_segment = &segment_buffer[segment_buffer_tail];
@@ -421,7 +421,8 @@ void HandleStepSetIT(void)
 			st_go_idle();
 #ifdef VARIABLE_SPINDLE
 			// Ensure pwm is set properly upon completion of rate-controlled motion.
-			if(st.exec_block->is_pwm_rate_adjusted) { spindle_set_speed(SPINDLE_PWM_OFF_VALUE); }
+			if (st.exec_block->is_pwm_rate_adjusted)
+				spindle_set_speed(SPINDLE_PWM_OFF_VALUE);
 #endif
 			system_set_exec_state_flag(EXEC_CYCLE_STOP);  // Flag main program for cycle end
 			return;  // Nothing to do but exit.
@@ -534,7 +535,6 @@ void HandleStepSetIT(void)
 		// Segment is complete. Discard current segment and advance segment indexing.
 		st.exec_segment = NULL;
 
-		//if ( ++segment_buffer_tail == SEGMENT_BUFFER_SIZE) { segment_buffer_tail = 0; }
 		uint8_t segment_tail_next = segment_buffer_tail + 1;
 		if (segment_tail_next == SEGMENT_BUFFER_SIZE)
 			segment_tail_next = 0;
@@ -643,8 +643,10 @@ void st_update_plan_block_parameters()
 static uint8_t st_next_block_index(uint8_t block_index)
 {
 	block_index++;
-	if (block_index == (SEGMENT_BUFFER_SIZE - 1)) { return (0); }
-	return (block_index);
+	if (block_index == (SEGMENT_BUFFER_SIZE - 1))
+		return 0;
+	
+	return block_index;
 }
 
 
@@ -680,7 +682,8 @@ void st_parking_restore_buffer()
 		prep.step_per_mm = prep.last_step_per_mm;
 		prep.recalculate_flag = (PREP_FLAG_HOLD_PARTIAL_BLOCK | PREP_FLAG_RECALCULATE);
 		prep.req_mm_increment = REQ_MM_INCREMENT_SCALAR / prep.step_per_mm;  // Recompute this value.
-	} else
+	}
+	else
 	{
 		prep.recalculate_flag = false;
 	}
@@ -725,7 +728,7 @@ void st_prep_buffer()
 				return; // No planner blocks. Exit.
 
 			// Check if we need to only recompute the velocity profile or load a new block.
-			if(prep.recalculate_flag & PREP_FLAG_RECALCULATE)
+			if (prep.recalculate_flag & PREP_FLAG_RECALCULATE)
 			{
 #ifdef PARKING_ENABLE
 				if (prep.recalculate_flag & PREP_FLAG_PARKING) { prep.recalculate_flag &= ~(PREP_FLAG_RECALCULATE); }
@@ -982,8 +985,10 @@ void st_prep_buffer()
 					// Acceleration-cruise, acceleration-deceleration ramp junction, or end of block.
 					mm_remaining = prep.accelerate_until;  // NOTE: 0.0 at EOB
 					time_var = 2.0f*(pl_block->millimeters - mm_remaining) / (prep.current_speed + prep.maximum_speed);
-					if (mm_remaining == prep.decelerate_after) { prep.ramp_type = RAMP_DECEL; }
-					else { prep.ramp_type = RAMP_CRUISE; }
+					if (mm_remaining == prep.decelerate_after)
+						prep.ramp_type = RAMP_DECEL;
+					else
+						prep.ramp_type = RAMP_CRUISE;
 					prep.current_speed = prep.maximum_speed;
 				}
 				else
@@ -1014,12 +1019,12 @@ void st_prep_buffer()
 			default: // case RAMP_DECEL:
 				// NOTE: mm_var used as a misc worker variable to prevent errors when near zero speed.
 				speed_var = pl_block->pbacceleration*time_var;  // Used as delta speed (mm/min)
-				if(prep.current_speed > speed_var)
+				if (prep.current_speed > speed_var)
 				{
 					 // Check if at or below zero speed.
 					// Compute distance from end of segment to end of block.
 					mm_var = mm_remaining - time_var*(prep.current_speed - 0.5f*speed_var);  // (mm)
-					if(mm_var > prep.mm_complete)
+					if (mm_var > prep.mm_complete)
 					{
 						 // Typical case. In deceleration ramp.
 						mm_remaining = mm_var;
@@ -1033,7 +1038,10 @@ void st_prep_buffer()
 				prep.current_speed = prep.exit_speed;
 			}
 			dt += time_var;  // Add computed ramp time to total segment time.
-			if(dt < dt_max) { time_var = dt_max - dt; } // **Incomplete** At ramp junction.
+			if (dt < dt_max)
+			{
+				time_var = dt_max - dt;
+			} // **Incomplete** At ramp junction.
 			else
 			{
 				if (mm_remaining > minimum_mm)
@@ -1056,13 +1064,14 @@ void st_prep_buffer()
 				Compute spindle speed PWM output for step segment
 			*/
 
-			if(st_prep_block->is_pwm_rate_adjusted || (sys.step_control & STEP_CONTROL_UPDATE_SPINDLE_PWM))
+		if (st_prep_block->is_pwm_rate_adjusted || (sys.step_control & STEP_CONTROL_UPDATE_SPINDLE_PWM))
 		{
 			if (pl_block->condition & (PL_COND_FLAG_SPINDLE_CW | PL_COND_FLAG_SPINDLE_CCW))
 			{
 				float rpm = pl_block->spindle_speed;
 				// NOTE: Feed and rapid overrides are independent of PWM value and do not alter laser power/rate.
-				if(st_prep_block->is_pwm_rate_adjusted) { rpm *= (prep.current_speed * prep.inv_rate); }
+				if (st_prep_block->is_pwm_rate_adjusted)
+					rpm *= prep.current_speed * prep.inv_rate;
 				// If current_speed is zero, then may need to be rpm_min*(100/MAX_SPINDLE_SPEED_OVERRIDE)
 				// but this would be instantaneous only and during a motion. May not matter at all.
 				prep.current_spindle_pwm = spindle_compute_pwm_value(rpm);
@@ -1094,7 +1103,7 @@ void st_prep_buffer()
 		prep_segment->n_step = (uint16_t)(last_n_steps_remaining - n_steps_remaining);   // Compute number of steps to execute.
 
 		// Bail if we are at the end of a feed hold and don't have a step to execute.
-		if(prep_segment->n_step == 0)
+		if (prep_segment->n_step == 0)
 		{
 			if (sys.step_control & STEP_CONTROL_EXECUTE_HOLD)
 			{
@@ -1127,7 +1136,7 @@ void st_prep_buffer()
 #ifdef ADAPTIVE_MULTI_AXIS_STEP_SMOOTHING
 		// Compute step timing and multi-axis smoothing level.
 		// NOTE: AMASS overdrives the timer with each level, so only one prescalar is required.
-		if(cycles < AMASS_LEVEL1)
+		if (cycles < AMASS_LEVEL1)
 		{
 			prep_segment->amass_level = 0;
 		}
