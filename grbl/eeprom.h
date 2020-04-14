@@ -22,7 +22,7 @@
 #ifndef eeprom_h
 #define eeprom_h
 
-#ifdef STM32
+#ifdef GRBL_STM32
   void eeprom_init();
 #endif
 

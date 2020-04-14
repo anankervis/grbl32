@@ -241,7 +241,7 @@
 #define DAC_CHIPCONNECT_ENABLE        DAC_CHIPCONNECT_INTERNAL
 #endif
 
-#if defined(STM32L1) || defined(STM32L4) || defined(STM32G0) || defined(STM32L5) || defined(STM32H7) || defined(STM32F4)
+#if defined(STM32L1) || defined(STM32L4) || defined(STM32G0) || defined(STM32L5) || defined(STM32H7) || defined(GRBL_STM32F4)
 #define HAL_DAC_MSP_INIT_CB_ID       HAL_DAC_MSPINIT_CB_ID
 #define HAL_DAC_MSP_DEINIT_CB_ID     HAL_DAC_MSPDEINIT_CB_ID
 #endif
@@ -530,7 +530,7 @@
 #define FMC_NAND_PCC_WAIT_FEATURE_ENABLE        FMC_NAND_WAIT_FEATURE_ENABLE
 #define FMC_NAND_PCC_MEM_BUS_WIDTH_8            FMC_NAND_MEM_BUS_WIDTH_8
 #define FMC_NAND_PCC_MEM_BUS_WIDTH_16           FMC_NAND_MEM_BUS_WIDTH_16
-#elif defined(STM32F1) || defined(STM32F2) || defined(STM32F3) || defined(STM32F4)
+#elif defined(STM32F1) || defined(STM32F2) || defined(STM32F3) || defined(GRBL_STM32F4)
 #define FMC_NAND_WAIT_FEATURE_DISABLE           FMC_NAND_PCC_WAIT_FEATURE_DISABLE
 #define FMC_NAND_WAIT_FEATURE_ENABLE            FMC_NAND_PCC_WAIT_FEATURE_ENABLE
 #define FMC_NAND_MEM_BUS_WIDTH_8                FMC_NAND_PCC_MEM_BUS_WIDTH_8
@@ -556,7 +556,7 @@
 #define GET_GPIO_SOURCE                           GPIO_GET_INDEX
 #define GET_GPIO_INDEX                            GPIO_GET_INDEX
 
-#if defined(STM32F4)
+#if defined(GRBL_STM32F4)
 #define GPIO_AF12_SDMMC                           GPIO_AF12_SDIO
 #define GPIO_AF12_SDMMC1                          GPIO_AF12_SDIO
 #endif
@@ -591,12 +591,12 @@
 #define GPIO_AF1_LPTIM                            GPIO_AF1_LPTIM1
 #define GPIO_AF2_LPTIM                            GPIO_AF2_LPTIM1
 
-#if defined(STM32L0) || defined(STM32L4) || defined(STM32F4) || defined(STM32F2) || defined(STM32F7) || defined(STM32G4) || defined(STM32H7)
+#if defined(STM32L0) || defined(STM32L4) || defined(GRBL_STM32F4) || defined(STM32F2) || defined(STM32F7) || defined(STM32G4) || defined(STM32H7)
 #define  GPIO_SPEED_LOW                           GPIO_SPEED_FREQ_LOW
 #define  GPIO_SPEED_MEDIUM                        GPIO_SPEED_FREQ_MEDIUM
 #define  GPIO_SPEED_FAST                          GPIO_SPEED_FREQ_HIGH
 #define  GPIO_SPEED_HIGH                          GPIO_SPEED_FREQ_VERY_HIGH
-#endif /* STM32L0 || STM32L4 || STM32F4 || STM32F2 || STM32F7 || STM32G4 || STM32H7*/
+#endif /* STM32L0 || STM32L4 || GRBL_STM32F4 || STM32F2 || STM32F7 || STM32G4 || STM32H7*/
 
 #if defined(STM32L1)
  #define  GPIO_SPEED_VERY_LOW    GPIO_SPEED_FREQ_LOW
@@ -1407,7 +1407,7 @@
 /**
   * @}
   */
-#endif  /* STM32L4 ||  STM32F7 ||  STM32F4 ||  STM32H7 */
+#endif  /* STM32L4 ||  STM32F7 ||  GRBL_STM32F4 ||  STM32H7 */
 
 /** @defgroup HAL_PPP_Aliased_Defines HAL PPP Aliased Defines maintained for legacy purpose
   * @{
@@ -1450,7 +1450,7 @@
 #define HASH_HMACKeyType_ShortKey  HASH_HMAC_KEYTYPE_SHORTKEY
 #define HASH_HMACKeyType_LongKey   HASH_HMAC_KEYTYPE_LONGKEY
 
-#if defined(STM32L4) || defined(STM32F4) || defined(STM32F7) || defined(STM32H7)
+#if defined(STM32L4) || defined(GRBL_STM32F4) || defined(STM32F7) || defined(STM32H7)
 
 #define HAL_HASH_MD5_Accumulate                HAL_HASH_MD5_Accmlt
 #define HAL_HASH_MD5_Accumulate_End            HAL_HASH_MD5_Accmlt_End
@@ -1472,7 +1472,7 @@
 #define HAL_HASHEx_SHA256_Accumulate_IT        HAL_HASHEx_SHA256_Accmlt_IT
 #define HAL_HASHEx_SHA256_Accumulate_End_IT    HAL_HASHEx_SHA256_Accmlt_End_IT
 
-#endif  /* STM32L4 || STM32F4 || STM32F7 || STM32H7 */
+#endif  /* STM32L4 || GRBL_STM32F4 || STM32F7 || STM32H7 */
 /**
   * @}
   */
@@ -1531,20 +1531,20 @@
 
 #define HAL_I2CFastModePlusConfig(SYSCFG_I2CFastModePlus, cmd) (((cmd)==ENABLE)? HAL_I2CEx_EnableFastModePlus(SYSCFG_I2CFastModePlus): HAL_I2CEx_DisableFastModePlus(SYSCFG_I2CFastModePlus))
 
-#if defined(STM32H7) || defined(STM32WB) || defined(STM32G0) || defined(STM32F0) || defined(STM32F1) || defined(STM32F2) || defined(STM32F3) || defined(STM32F4) || defined(STM32F7) || defined(STM32L0) || defined(STM32L4) || defined(STM32L5) || defined(STM32G4)
+#if defined(STM32H7) || defined(STM32WB) || defined(STM32G0) || defined(STM32F0) || defined(STM32F1) || defined(STM32F2) || defined(STM32F3) || defined(GRBL_STM32F4) || defined(STM32F7) || defined(STM32L0) || defined(STM32L4) || defined(STM32L5) || defined(STM32G4)
 #define HAL_I2C_Master_Sequential_Transmit_IT  HAL_I2C_Master_Seq_Transmit_IT
 #define HAL_I2C_Master_Sequential_Receive_IT   HAL_I2C_Master_Seq_Receive_IT
 #define HAL_I2C_Slave_Sequential_Transmit_IT   HAL_I2C_Slave_Seq_Transmit_IT
 #define HAL_I2C_Slave_Sequential_Receive_IT    HAL_I2C_Slave_Seq_Receive_IT
-#endif /* STM32H7 || STM32WB  || STM32G0 || STM32F0 || STM32F1 || STM32F2 || STM32F3 || STM32F4 || STM32F7 || STM32L0 || STM32L4 || STM32L5 || STM32G4 */
-#if defined(STM32H7) || defined(STM32WB) || defined(STM32G0) || defined(STM32F4) || defined(STM32F7) || defined(STM32L0) || defined(STM32L4) || defined(STM32L5) || defined(STM32G4)
+#endif /* STM32H7 || STM32WB  || STM32G0 || STM32F0 || STM32F1 || STM32F2 || STM32F3 || GRBL_STM32F4 || STM32F7 || STM32L0 || STM32L4 || STM32L5 || STM32G4 */
+#if defined(STM32H7) || defined(STM32WB) || defined(STM32G0) || defined(GRBL_STM32F4) || defined(STM32F7) || defined(STM32L0) || defined(STM32L4) || defined(STM32L5) || defined(STM32G4)
 #define HAL_I2C_Master_Sequential_Transmit_DMA HAL_I2C_Master_Seq_Transmit_DMA
 #define HAL_I2C_Master_Sequential_Receive_DMA  HAL_I2C_Master_Seq_Receive_DMA
 #define HAL_I2C_Slave_Sequential_Transmit_DMA  HAL_I2C_Slave_Seq_Transmit_DMA
 #define HAL_I2C_Slave_Sequential_Receive_DMA   HAL_I2C_Slave_Seq_Receive_DMA
-#endif /* STM32H7 || STM32WB  || STM32G0 || STM32F4 || STM32F7 || STM32L0 || STM32L4 || STM32L5 || STM32G4 */
+#endif /* STM32H7 || STM32WB  || STM32G0 || GRBL_STM32F4 || STM32F7 || STM32L0 || STM32L4 || STM32L5 || STM32G4 */
 
-#if defined(STM32F4)
+#if defined(GRBL_STM32F4)
 #define HAL_FMPI2C_Master_Sequential_Transmit_IT  HAL_FMPI2C_Master_Seq_Transmit_IT
 #define HAL_FMPI2C_Master_Sequential_Receive_IT   HAL_FMPI2C_Master_Seq_Receive_IT
 #define HAL_FMPI2C_Slave_Sequential_Transmit_IT   HAL_FMPI2C_Slave_Seq_Transmit_IT
@@ -1553,7 +1553,7 @@
 #define HAL_FMPI2C_Master_Sequential_Receive_DMA  HAL_FMPI2C_Master_Seq_Receive_DMA
 #define HAL_FMPI2C_Slave_Sequential_Transmit_DMA  HAL_FMPI2C_Slave_Seq_Transmit_DMA
 #define HAL_FMPI2C_Slave_Sequential_Receive_DMA   HAL_FMPI2C_Slave_Seq_Receive_DMA
-#endif /* STM32F4 */
+#endif /* GRBL_STM32F4 */
  /**
   * @}
   */
@@ -1640,14 +1640,14 @@
 #define HAL_TIM_DMAError                                TIM_DMAError
 #define HAL_TIM_DMACaptureCplt                          TIM_DMACaptureCplt
 #define HAL_TIMEx_DMACommutationCplt                    TIMEx_DMACommutationCplt
-#if defined(STM32H7) || defined(STM32G0) || defined(STM32F0) || defined(STM32F1) || defined(STM32F2) || defined(STM32F3) || defined(STM32F4) || defined(STM32F7) || defined(STM32L0) || defined(STM32L4)
+#if defined(STM32H7) || defined(STM32G0) || defined(STM32F0) || defined(STM32F1) || defined(STM32F2) || defined(STM32F3) || defined(GRBL_STM32F4) || defined(STM32F7) || defined(STM32L0) || defined(STM32L4)
 #define HAL_TIM_SlaveConfigSynchronization              HAL_TIM_SlaveConfigSynchro
 #define HAL_TIM_SlaveConfigSynchronization_IT           HAL_TIM_SlaveConfigSynchro_IT
 #define HAL_TIMEx_CommutationCallback                   HAL_TIMEx_CommutCallback
 #define HAL_TIMEx_ConfigCommutationEvent                HAL_TIMEx_ConfigCommutEvent
 #define HAL_TIMEx_ConfigCommutationEvent_IT             HAL_TIMEx_ConfigCommutEvent_IT
 #define HAL_TIMEx_ConfigCommutationEvent_DMA            HAL_TIMEx_ConfigCommutEvent_DMA
-#endif /* STM32H7 || STM32G0 || STM32F0 || STM32F1 || STM32F2 || STM32F3 || STM32F4 || STM32F7 || STM32L0 */
+#endif /* STM32H7 || STM32G0 || STM32F0 || STM32F1 || STM32F2 || STM32F3 || GRBL_STM32F4 || STM32F7 || STM32L0 */
 /**
   * @}
   */
@@ -2055,7 +2055,7 @@
 #define __HAL_COMP_GET_EXTI_LINE  COMP_GET_EXTI_LINE
 
 #if defined(STM32L0) || defined(STM32L4)
-/* Note: On these STM32 families, the only argument of this macro             */
+/* Note: On these GRBL_STM32 families, the only argument of this macro             */
 /*       is COMP_FLAG_LOCK.                                                   */
 /*       This macro is replaced by __HAL_COMP_IS_LOCKED with only HAL handle  */
 /*       argument.                                                            */
@@ -2249,7 +2249,7 @@
 #define __HAL_PWR_VDDUSB_DISABLE                                 HAL_PWREx_DisableVddUSB
 #define __HAL_PWR_VDDUSB_ENABLE                                  HAL_PWREx_EnableVddUSB
 
-#if defined (STM32F4)
+#if defined (GRBL_STM32F4)
 #define __HAL_PVD_EXTI_ENABLE_IT(PWR_EXTI_LINE_PVD)         __HAL_PWR_PVD_EXTI_ENABLE_IT()
 #define __HAL_PVD_EXTI_DISABLE_IT(PWR_EXTI_LINE_PVD)        __HAL_PWR_PVD_EXTI_DISABLE_IT()
 #define __HAL_PVD_EXTI_GET_FLAG(PWR_EXTI_LINE_PVD)          __HAL_PWR_PVD_EXTI_GET_FLAG()
@@ -2261,7 +2261,7 @@
 #define __HAL_PVD_EXTI_ENABLE_IT                                 __HAL_PWR_PVD_EXTI_ENABLE_IT
 #define __HAL_PVD_EXTI_GENERATE_SWIT                             __HAL_PWR_PVD_EXTI_GENERATE_SWIT
 #define __HAL_PVD_EXTI_GET_FLAG                                  __HAL_PWR_PVD_EXTI_GET_FLAG
-#endif /* STM32F4 */
+#endif /* GRBL_STM32F4 */
 /**
   * @}
   */
@@ -3129,7 +3129,7 @@
 #define __HAL_RCC_CRYP_RELEASE_RESET       __HAL_RCC_AES_RELEASE_RESET
 #endif /* STM32L1 */
 
-#if defined(STM32F4)
+#if defined(GRBL_STM32F4)
 #define __HAL_RCC_SDMMC1_FORCE_RESET       __HAL_RCC_SDIO_FORCE_RESET
 #define __HAL_RCC_SDMMC1_RELEASE_RESET     __HAL_RCC_SDIO_RELEASE_RESET
 #define __HAL_RCC_SDMMC1_CLK_SLEEP_ENABLE  __HAL_RCC_SDIO_CLK_SLEEP_ENABLE
@@ -3437,7 +3437,7 @@
 #define SD_OCR_CID_CSD_OVERWRIETE   SD_OCR_CID_CSD_OVERWRITE
 #define SD_CMD_SD_APP_STAUS         SD_CMD_SD_APP_STATUS
 
-#if defined(STM32F4) || defined(STM32F2)
+#if defined(GRBL_STM32F4) || defined(STM32F2)
 #define  SD_SDMMC_DISABLED          SD_SDIO_DISABLED
 #define  SD_SDMMC_FUNCTION_BUSY     SD_SDIO_FUNCTION_BUSY
 #define  SD_SDMMC_FUNCTION_FAILED   SD_SDIO_FUNCTION_FAILED
@@ -3489,7 +3489,7 @@
 #define  SDIO_IRQHandler            SDMMC1_IRQHandler
 #endif
 
-#if defined(STM32F7) || defined(STM32F4) || defined(STM32F2) || defined(STM32L4) || defined(STM32H7)
+#if defined(STM32F7) || defined(GRBL_STM32F4) || defined(STM32F2) || defined(STM32L4) || defined(STM32H7)
 #define  HAL_SD_CardCIDTypedef       HAL_SD_CardCIDTypeDef
 #define  HAL_SD_CardCSDTypedef       HAL_SD_CardCSDTypeDef
 #define  HAL_SD_CardStatusTypedef    HAL_SD_CardStatusTypeDef
@@ -3751,9 +3751,9 @@
 /** @defgroup HAL_QSPI_Aliased_Macros HAL QSPI Aliased Macros maintained for legacy purpose
   * @{
   */
-#if defined (STM32L4) || defined (STM32F4) || defined (STM32F7)
+#if defined (STM32L4) || defined (GRBL_STM32F4) || defined (STM32F7)
 #define HAL_QPSI_TIMEOUT_DEFAULT_VALUE HAL_QSPI_TIMEOUT_DEFAULT_VALUE
-#endif /* STM32L4 || STM32F4 || STM32F7 */
+#endif /* STM32L4 || GRBL_STM32F4 || STM32F7 */
 /**
   * @}
   */

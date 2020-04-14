@@ -43,7 +43,7 @@
       <CPPLanguageStandard>
       </CPPLanguageStandard>
       <AdditionalIncludeDirectories>../stm32;../grbl;Inc;Drivers\CMSIS\Include;Drivers\CMSIS\Device\ST\STM32F4xx\Include;Drivers\STM32F4xx_HAL_Driver\Inc;Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>flash_layout;STM32F407xx;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GRBL_STM32;GRBL_STM32F4;GRBL_STM32F46;GRBL_STM32F4_3;USE_FULL_LL_DRIVER;flash_layout;STM32F407xx;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard />
     </ClCompile>
@@ -59,7 +59,7 @@
       <CPPLanguageStandard>
       </CPPLanguageStandard>
       <AdditionalIncludeDirectories>../stm32;../grbl;Inc;Drivers\CMSIS\Include;Drivers\CMSIS\Device\ST\STM32F4xx\Include;Drivers\STM32F4xx_HAL_Driver\Inc;Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>flash_layout;STM32F407xx;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GRBL_STM32;GRBL_STM32F4;GRBL_STM32F46;GRBL_STM32F4_3;USE_FULL_LL_DRIVER;flash_layout;STM32F407xx;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard />
     </ClCompile>
@@ -97,12 +97,16 @@
     <ClCompile Include="Src\gpio.c" />
     <ClCompile Include="Src\i2c.c" />
     <ClCompile Include="Src\spi.c" />
+    <ClCompile Include="Src\system_stm32f4xx.c" />
     <ClCompile Include="Src\tim.c" />
     <ClCompile Include="Src\usart.c" />
     <ClCompile Include="Src\stm32f4xx_it.c" />
     <ClCompile Include="Src\stm32f4xx_hal_msp.c" />
     <ClCompile Include="Src\main.c" />
-    <ClCompile Include="Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c" />
+    <ClCompile Include="Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c" />
     <ClCompile Include="Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_exti.c" />
     <ClCompile Include="Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c" />
@@ -154,6 +158,27 @@
     <ClInclude Include="..\stm32\stm32utilities.h" />
     <ClInclude Include="..\stm32\stm32_cpu_map.h" />
     <ClInclude Include="..\stm32\stm32_pin_out.h" />
+    <ClInclude Include="Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\cmsis_armcc.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\cmsis_armclang.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\cmsis_compiler.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\cmsis_gcc.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\cmsis_iccarm.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\cmsis_version.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\core_armv8mbl.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\core_armv8mml.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\core_cm0.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\core_cm0plus.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\core_cm1.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\core_cm23.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\core_cm3.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\core_cm33.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\core_cm7.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\core_sc000.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\core_sc300.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\mpu_armv7.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\mpu_armv8.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\tz_context.h" />
     <ClInclude Include="Inc\gpio.h" />
     <ClInclude Include="Inc\i2c.h" />
     <ClInclude Include="Inc\spi.h" />

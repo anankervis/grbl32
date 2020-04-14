@@ -206,7 +206,7 @@ void system_clear_exec_motion_overrides();
 void system_clear_exec_accessory_overrides();
 
 
-#ifdef STM32
+#ifdef GRBL_STM32
 	void HandleControlIT(uint16_t Control_Pin);
 #endif
 

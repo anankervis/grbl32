@@ -38,7 +38,7 @@ uint8_t coolant_get_state()
 {
   uint8_t cl_state = COOLANT_STATE_DISABLE;
 
-#ifdef STM32
+#ifdef GRBL_STM32
   if (bit_istrue(GPIO_ReadOutputData(COOL_FLOOD_GPIO_Port),COOL_FLOOD_Pin))
   {
     cl_state |= COOLANT_STATE_FLOOD;
@@ -78,7 +78,7 @@ uint8_t coolant_get_state()
 // an interrupt-level. No report flag set, but only called by routines that don't need it.
 void coolant_stop()
 {
-#ifdef STM32
+#ifdef GRBL_STM32
 	#ifdef INVERT_COOLANT_FLOOD_PIN
 		GPIO_SetBits(COOL_FLOOD_GPIO_Port,COOL_FLOOD_Pin);
 	#else
@@ -118,7 +118,7 @@ void coolant_set_state(uint8_t mode)
 {
   if (sys.abort) { return; } // Block during abort.  
 
-#ifdef STM32
+#ifdef GRBL_STM32
 
   if (mode == COOLANT_DISABLE)
   {

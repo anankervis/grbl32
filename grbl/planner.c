@@ -377,7 +377,7 @@ uint8_t plan_buffer_line(float *target, plan_line_data_t *pl_data)
     // Set direction bits. Bit enabled always means direction is negative.
     if (delta_mm < 0.0 )
     {
-      #ifdef STM32
+      #ifdef GRBL_STM32
         block->direction_bits |= direction_pin_mask[idx];
       #elif ATMEGA328P
       block->direction_bits |= get_direction_pin_mask(idx);

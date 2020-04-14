@@ -170,7 +170,7 @@ void HAL_PWR_DisableBkUpAccess(void)
           (++) PWR_SLEEPENTRY_WFI: enter SLEEP mode with WFI instruction
           (++) PWR_SLEEPENTRY_WFE: enter SLEEP mode with WFE instruction
       
-      -@@- The Regulator parameter is not used for the STM32F4 family 
+      -@@- The Regulator parameter is not used for the GRBL_STM32F4 family 
               and is kept as parameter just to maintain compatibility with the 
               lower power families (STM32L).
       (+) Exit:
@@ -354,7 +354,7 @@ void HAL_PWR_DisableWakeUpPin(uint32_t WakeUpPinx)
   *            This parameter can be one of the following values:
   *            @arg PWR_MAINREGULATOR_ON: SLEEP mode with regulator ON
   *            @arg PWR_LOWPOWERREGULATOR_ON: SLEEP mode with low power regulator ON
-  * @note This parameter is not used for the STM32F4 family and is kept as parameter
+  * @note This parameter is not used for the GRBL_STM32F4 family and is kept as parameter
   *       just to maintain compatibility with the lower power families.
   * @param SLEEPEntry Specifies if SLEEP mode in entered with WFI or WFE instruction.
   *          This parameter can be one of the following values:

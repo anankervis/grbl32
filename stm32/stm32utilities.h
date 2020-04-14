@@ -29,7 +29,7 @@
 #ifdef STM32F1
 //	#include "stm32f1xx_hal.h"
 #endif
-#ifdef STM32F4
+#ifdef GRBL_STM32F4
 //	#include "stm32f4xx_hal.h"
 	#include "spi.h"
 
@@ -69,7 +69,7 @@ void Limit_IT_Start();
 
 //-- Spindle
 /*
-#ifdef STM32F4
+#ifdef GRBL_STM32F4
 	HAL_StatusTypeDef Spindle_PWM_Stop();
 	HAL_StatusTypeDef Spindle_PWM_Start();
 	void Spindle_PWM_Set(uint16_t uPWM);
@@ -103,7 +103,7 @@ void uart_sendch(uint8_t ch);
 
 
 
-#ifdef STM32F46   //-- board specific hardwares
+#ifdef GRBL_STM32F46   //-- board specific hardwares
 	enum IOExpChip {IOC0, IOC1};
 	enum IOActive {IOA_Lo, IOA_Hi};
 

@@ -28,7 +28,7 @@
 
 // Version of the EEPROM data. Will be used to migrate existing data from older versions of Grbl
 // when firmware is upgraded. Always stored in byte 0 of eeprom
-#if ( defined(STM32F1_3) || defined(STM32F4_3) )
+#if ( defined(STM32F1_3) || defined(GRBL_STM32F4_3) )
 	#define SETTINGS_VERSION 13  // NOTE: Check settings_reset() when moving to next version.
 #endif
 #if ( defined(STM32F1_4) || defined(STM32F4_4) )
@@ -98,7 +98,7 @@ typedef struct {
 
   // Remaining Grbl settings
 //  uint8_t pulse_microseconds;
-  float fpulse_microseconds;			// changed to float for STM32F4 500KHz rate
+  float fpulse_microseconds;			// changed to float for GRBL_STM32F4 500KHz rate
   uint8_t step_invert_mask;
   uint8_t dir_invert_mask;
   uint8_t stepper_idle_lock_time; // If max value 255, steppers do not disable.

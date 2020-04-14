@@ -56,7 +56,7 @@ void probe_configure_invert_mask(uint8_t is_probe_away)
 // Returns the probe pin state. Triggered = true. Called by gcode parser and probe state monitor.
 uint8_t probe_get_state()
 {
-#ifdef STM32
+#ifdef GRBL_STM32
   return !((GPIO_ReadInputData(PROBE_GPIO_Port) & PROBE_Pin) ^ probe_invert_mask);
 #elif ATMEGA328P
   return((PROBE_PIN & PROBE_MASK) ^ probe_invert_mask);

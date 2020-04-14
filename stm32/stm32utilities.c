@@ -1,5 +1,5 @@
 /*
- * TODO: move all STM32 specific LL and HAL calls here
+ * TODO: move all GRBL_STM32 specific LL and HAL calls here
  *
   stm32utilities.c
 
@@ -24,7 +24,7 @@
 #include <string.h>
 
 //-- Steps and Directions Pin Arrays --------------
-#if ( defined(STM32F1_3) || defined(STM32F4_3) )
+#if ( defined(STM32F1_3) || defined(GRBL_STM32F4_3) )
 const PIN_MASK step_pin_mask[N_AXIS] =
 {	STEP_X_Pin, STEP_Y_Pin, STEP_Z_Pin};
 const PIN_MASK direction_pin_mask[N_AXIS] =
@@ -69,7 +69,7 @@ const PIN_MASK limit_pin_mask[N_AXIS] =
 /*
  * For the F46, Limits are on SPI expandedIO, not MCU pins, we'll organize the pins sequentially
  */
-#ifdef STM32F4_3
+#ifdef GRBL_STM32F4_3
 const PIN_MASK limit_pin_mask[N_AXIS] =
 {	0x01, 0x02, 0x04};
 #endif
@@ -89,7 +89,7 @@ const PIN_MASK limit_pin_mask[N_AXIS] =
 #ifdef STM32F1
 char *pHello = "Hi G32F1\r\n";
 #endif
-#ifdef  STM32F4
+#ifdef  GRBL_STM32F4
 char *pHello = "Hi G32F4\r\n";
 #endif
 
@@ -191,7 +191,7 @@ void uart_sendch(uint8_t uC)
 #if 1
 	while (!(LL_USART_IsActiveFlag_TXE(USART1))); // sit till empty
 
-for (uint32_t i = 0; i < 5000; i++)
+for (uint32_t i = 0; i < 20000; i++)
 	__asm__ __volatile__("nop\n\t":::"memory");
 
 	LL_USART_TransmitData8(USART1, uC);
@@ -266,7 +266,7 @@ void GPIO_SetBits(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)
 }
 //------------------------------------------------------------------------
 
-#ifdef STM32F46   //-- board specific hardware, SPI driven limits
+#ifdef GRBL_STM32F46   //-- board specific hardware, SPI driven limits
 uint8_t SPIDataC0W[3]; // 		= { 0x40, 0x00, 0x00 };		//-- Chip0, Limits P & N
 uint8_t SPIDataC0R[3]; //		= { 0x41, 0x00, 0x00 };
 uint8_t SPIDataC1W[3]; // 		= { 0x66, 0x00, 0x00 };		//-- Chip1, Home and ExpansionIO
@@ -523,11 +523,11 @@ uint8_t ReadInputByte()
 	return (val);
 }
 
-#endif //STM32F46
+#endif //GRBL_STM32F46
 
 void spi_limits_init()
 {
-#ifdef STM32F46 //-- board specific hardware, SPI driven limits
+#ifdef GRBL_STM32F46 //-- board specific hardware, SPI driven limits
 	SPIInit(&hspi3);
 #endif
 }

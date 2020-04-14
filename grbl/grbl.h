@@ -29,7 +29,7 @@
 
 // Define standard libraries used by Grbl.
 #include <math.h>
-#ifdef STM32
+#ifdef GRBL_STM32
   #include "main.h"
   #include "stm32utilities.h"
   #include "inoutputs.h"

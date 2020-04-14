@@ -26,7 +26,7 @@
 #include "stm32utilities.h"
 
 
-#if ( defined(STM32F13) || defined(STM32F46) )	//-- only available on F13 and F46
+#if ( defined(STM32F13) || defined(GRBL_STM32F46) )	//-- only available on F13 and F46
 
 #define LCD_ADDR (0x27 << 1)
 #define PIN_RS    (1 << 0)
@@ -121,4 +121,4 @@ void LCD_SendString(uint8_t lcd_addr, char *str)
 }
 //-------------------------------------------------------------------------------
 
-#endif //( defined(STM32F13) || defined(STM32F46) )
+#endif //( defined(STM32F13) || defined(GRBL_STM32F46) )

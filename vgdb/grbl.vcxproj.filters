@@ -64,6 +64,24 @@
     <Filter Include="f4\STM32Cube HAL\I2C">
       <UniqueIdentifier>{c66ac3b3-316e-47ff-ba1a-2da030639fbb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="f4\CMSIS">
+      <UniqueIdentifier>{ac35e184-04e7-492f-933d-35ff9d98664d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="f4\CMSIS\Device">
+      <UniqueIdentifier>{badcf635-46f4-41d4-9e3a-fcccee6ee7e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="f4\CMSIS\Device\ST">
+      <UniqueIdentifier>{59c7df52-22c4-4f52-b3c2-c90e8dba550c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="f4\CMSIS\Device\ST\STM32F4xx">
+      <UniqueIdentifier>{f716c83d-4402-49cb-9931-0f30a0c11dc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="f4\CMSIS\Device\ST\STM32F4xx\Include">
+      <UniqueIdentifier>{dfb756e5-f82d-4638-b38e-868e5c0a7a73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="f4\CMSIS\Include">
+      <UniqueIdentifier>{d88602e1-351c-44b8-ab6e-c323da5a0566}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c">
@@ -226,6 +244,9 @@
       <Filter>f4</Filter>
     </ClCompile>
     <ClCompile Include="Src\usart.c">
+      <Filter>f4</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\system_stm32f4xx.c">
       <Filter>f4</Filter>
     </ClCompile>
   </ItemGroup>
@@ -442,6 +463,69 @@
     </ClInclude>
     <ClInclude Include="Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h">
       <Filter>f4\STM32Cube HAL\COMMON</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h">
+      <Filter>f4\CMSIS\Device\ST\STM32F4xx\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\cmsis_armcc.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\cmsis_armclang.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\cmsis_compiler.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\cmsis_gcc.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\cmsis_iccarm.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\cmsis_version.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\core_armv8mbl.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\core_armv8mml.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\core_cm0.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\core_cm0plus.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\core_cm1.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\core_cm23.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\core_cm3.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\core_cm33.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\core_cm7.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\core_sc000.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\core_sc300.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\mpu_armv7.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\mpu_armv8.h">
+      <Filter>f4\CMSIS\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\tz_context.h">
+      <Filter>f4\CMSIS\Include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -24,7 +24,7 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#ifdef STM32F4
+#ifdef GRBL_STM32F4
 #include "stm32f4xx_hal.h"
 
 #ifndef FLASH_TIMEOUT_VALUE
@@ -44,7 +44,7 @@
 	#define PAGE_SIZE FLASH_PAGE_SIZE
 #endif
 
-#ifdef STM32F4
+#ifdef GRBL_STM32F4
 	#define PAGE_SIZE  (uint16_t)0x800  /* Page size = 2KByte */
 #endif
 
@@ -192,7 +192,7 @@
 
 
 #endif
-#ifdef STM32F4
+#ifdef GRBL_STM32F4
 	/* The F4 Flash is sector based
 	 *  Note: STM32F407VGT6 is 1MB, all 11 sectors
 	 *  	  STM32F407VET6 is only 512MB, up to and including sector 7

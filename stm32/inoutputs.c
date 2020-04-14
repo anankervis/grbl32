@@ -41,7 +41,7 @@
   #endif
 #endif
 
-#ifdef STM32F4
+#ifdef GRBL_STM32F4
 static float pwm_analog_gradient; // Precalulated value to speed up rpm to PWM conversions.
 const PIN_MASK outputs_pin_mask[N_OUTPUTS_DIG] =
   { AUX_1_Pin, AUX_2_Pin, AUX_3_Pin, AUX_4_Pin, AUX_5_Pin, AUX_6_Pin, AUX_7_Pin, AUX_8_Pin };
@@ -144,7 +144,7 @@ void wait_on_input_action (uint8_t bit_index, uint8_t Mode,float *pTimeoutS)
 
 #endif //-- STM32F1
 
-#ifdef STM32F4
+#ifdef GRBL_STM32F4
 //--------------------------------------------------------------------------
 /*
  * Sequence: Set PWM value, then Enable
@@ -268,4 +268,4 @@ void wait_on_input_action(uint8_t bit_index, uint8_t Mode, float *pTimeoutS)
     }
 
 }
-#endif //--STM32F4
+#endif //--GRBL_STM32F4

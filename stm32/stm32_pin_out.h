@@ -186,7 +186,7 @@
 #endif
 
 
-#ifdef STM32F46
+#ifdef GRBL_STM32F46
 
 	//-- Step Dir  ---------------------------------------------------------
 	#define LIM_GPIO_Port GPIOB
@@ -198,7 +198,7 @@
   #define AUX_GPIO_Port GPIOD
   #define AUX_MASK        (AUX_1_Pin | AUX_2_Pin | AUX_3_Pin | AUX_4_Pin | AUX_5_Pin | AUX_6_Pin | AUX_7_Pin | AUX_8_Pin) // All aux pins
 
-#ifdef STM32F4_3
+#ifdef GRBL_STM32F4_3
   #define DIR_MASK        (DIR_X_Pin | DIR_Y_Pin | DIR_Z_Pin) // All direction pins
   #define STEP_MASK       (STEP_X_Pin | STEP_Y_Pin | STEP_Z_Pin) // All step pins
 #endif
@@ -248,7 +248,7 @@
 
 	//-- Spindle/Laser PWM -------------------------------------------------------
 	/* For maximum resolution (Counter_Period), we will use the full timer clock, Pre_Scaler(PSC) will be 0.
-	 * For the STM32F4, the timer clock will be 168MHz for TIM1,8,9,10,11 and 84MHz for TIM2,3,4,5,6,7,12,13,14
+	 * For the GRBL_STM32F4, the timer clock will be 168MHz for TIM1,8,9,10,11 and 84MHz for TIM2,3,4,5,6,7,12,13,14
 	 * using PWM_FREQUENCY = Timer_Clock / (Pre_Scaler+1) * (Counter_Period+1)
 	 * for TIM2;   	PWM_FREQUENCY = 84000000 / (PSC+1) * (ARR+1)
 	 * for GRBL, a PWM_FREQUENCY of 10KHz is desirable for a Laser Engraver

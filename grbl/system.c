@@ -42,7 +42,7 @@ void system_init()
 uint8_t system_control_get_state()
 {
   uint8_t control_state = 0;
-#ifdef STM32
+#ifdef GRBL_STM32
   uint16_t pin= GPIO_ReadInputData(CON_GPIO_Port);
 #elif ATMEGA328P
   uint8_t pin = (CONTROL_PIN & CONTROL_MASK);
@@ -67,7 +67,7 @@ uint8_t system_control_get_state()
 // only the realtime command execute variable to have the main program execute these when
 // its ready. This works exactly like the character-based realtime commands when picked off
 // directly from the incoming serial data stream.
-#ifdef STM32
+#ifdef GRBL_STM32
   void HandleControlIT(uint16_t Control_Pin)
   {
     uint8_t pin = system_control_get_state();
@@ -398,7 +398,7 @@ uint8_t system_check_travel_limits(float *target)
 // Special handlers for setting and clearing Grbl's real-time execution flags.
 void system_set_exec_state_flag(uint8_t mask)
 {
-#ifdef STM32
+#ifdef GRBL_STM32
   __disable_irq();
   sys_rt_exec_state |= (mask);
   __enable_irq();
@@ -412,7 +412,7 @@ void system_set_exec_state_flag(uint8_t mask)
 
 void system_clear_exec_state_flag(uint8_t mask)
 {
-#ifdef STM32
+#ifdef GRBL_STM32
   __disable_irq();
   sys_rt_exec_state &= ~(mask);
   __enable_irq();
@@ -426,7 +426,7 @@ void system_clear_exec_state_flag(uint8_t mask)
 
 void system_set_exec_alarm(uint8_t code)
 {
-#ifdef STM32
+#ifdef GRBL_STM32
   __disable_irq();
   sys_rt_exec_alarm |= (code);
   __enable_irq();
@@ -440,7 +440,7 @@ void system_set_exec_alarm(uint8_t code)
 
 void system_clear_exec_alarm()
 {
-#ifdef STM32
+#ifdef GRBL_STM32
   __disable_irq();
   sys_rt_exec_alarm = 0;
   __enable_irq();
@@ -454,7 +454,7 @@ void system_clear_exec_alarm()
 
 void system_set_exec_motion_override_flag(uint8_t mask)
 {
-#ifdef STM32
+#ifdef GRBL_STM32
   __disable_irq();
   sys_rt_exec_motion_override |= (mask);
   __enable_irq();
@@ -468,7 +468,7 @@ void system_set_exec_motion_override_flag(uint8_t mask)
 
 void system_set_exec_accessory_override_flag(uint8_t mask)
 {
-#ifdef STM32
+#ifdef GRBL_STM32
   __disable_irq();
   sys_rt_exec_accessory_override |= (mask);
   __enable_irq();
@@ -482,7 +482,7 @@ void system_set_exec_accessory_override_flag(uint8_t mask)
 
 void system_clear_exec_motion_overrides()
 {
-#ifdef STM32
+#ifdef GRBL_STM32
   __disable_irq();
   sys_rt_exec_motion_override = 0;
   __enable_irq();
@@ -496,7 +496,7 @@ void system_clear_exec_motion_overrides()
 
 void system_clear_exec_accessory_overrides()
 {
-#ifdef STM32
+#ifdef GRBL_STM32
   __disable_irq();
   sys_rt_exec_accessory_override = 0;
   __enable_irq();

@@ -132,7 +132,7 @@ int main(void)
   stepper_init();  // Configure stepper pins and interrupt timers
   system_init();   // Configure pinout pins and pin-change interrupt
 
-uint32_t debugCounter = 0;
+/*uint32_t debugCounter = 0;
 while (true) {
 	// this doesn't always work
 	//printString("0123456789ABCDEF\r\n");
@@ -166,7 +166,7 @@ while (true) {
 
 	// It seems like sometimes either the serial -> USB chip, or the virtual COM driver on my PC,
 	// gets into a bad state and I receive nothing. Disabling/enabling in Device Manager is a workaround.
-}
+}*/
 
   memset(sys_position,0,sizeof(sys_position)); // Clear machine position.
 

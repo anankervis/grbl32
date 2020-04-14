@@ -236,11 +236,11 @@ void st_wake_up()
     // Set delay between direction pin write and step command.
     OCR0A = -(((settings.pulse_microseconds)*TICKS_PER_MICROSECOND) >> 3);
   #else // Normal operation
-    #ifdef STM32
+    #ifdef GRBL_STM32
 			#ifdef STM32F1
     		st.step_pulse_time = (settings.fpulse_microseconds)*uTICKS_PER_MICROSECOND;
 			#endif
-			#ifdef STM32F4
+			#ifdef GRBL_STM32F4
    		st.step_pulse_time = (settings.fpulse_microseconds)*uTICKS_PER_MICROSECOND;
 			#endif
 
@@ -252,7 +252,7 @@ void st_wake_up()
   #endif
 
   // Enable Stepper Driver Interrupt
-  #ifdef STM32
+  #ifdef GRBL_STM32
 		LL_TIM_SetAutoReload(STEP_RESET_TIMER, st.step_pulse_time - 1);
 		LL_TIM_GenerateEvent_UPDATE(STEP_RESET_TIMER);
 		LL_TIM_ClearFlag_UPDATE(STEP_RESET_TIMER);
@@ -277,7 +277,7 @@ void st_wake_up()
 void st_go_idle()
 {
   // Disable Stepper Driver Interrupt. Allow Stepper Port Reset Interrupt to finish, if active.
-#ifdef STM32
+#ifdef GRBL_STM32
 	Step_Set_DisableIRQ();
 #elif ATMEGA328P
   TIMSK1 &= ~(1<<OCIE1A); // Disable Timer1 interrupt
@@ -354,7 +354,7 @@ void st_go_idle()
 // int8 variables and update position counters only when a segment completes. This can get complicated
 // with probing and homing cycles that require true real-time positions.
 
-#ifdef STM32
+#ifdef GRBL_STM32
 void HandleStepSetIT(void)
 {
   if (busy) { return; } // The busy-flag is used to avoid reentering this interrupt
@@ -629,7 +629,7 @@ void st_generate_step_dir_invert_masks()
   step_port_invert_mask = 0;
   dir_port_invert_mask = 0;
   for (idx=0; idx<N_AXIS; idx++) {
-    #ifdef STM32
+    #ifdef GRBL_STM32
       if (bit_istrue(settings.step_invert_mask,bit(idx))) { step_port_invert_mask |= step_pin_mask[idx]; }
       if (bit_istrue(settings.dir_invert_mask,bit(idx))) { dir_port_invert_mask |= direction_pin_mask[idx]; }
     #elif ATMEGA328P
@@ -660,7 +660,7 @@ void st_reset()
   st.dir_outbits = dir_port_invert_mask; // Initialize direction bits to default.
 
   // Initialize step and direction port pins.
-#ifdef STM32
+#ifdef GRBL_STM32
   GPIO_Write(STEP_GPIO_Port, (GPIO_ReadOutputData(STEP_GPIO_Port) & ~STEP_MASK) | (step_port_invert_mask & STEP_MASK));
   GPIO_Write(DIR_GPIO_Port, (GPIO_ReadOutputData(DIR_GPIO_Port) & ~DIR_MASK) | (dir_port_invert_mask & DIR_MASK));
 #elif ATMEGA328P
@@ -673,7 +673,7 @@ void st_reset()
 // Initialize and start the stepper motor subsystem
 void stepper_init()
 {
-#ifdef STM32
+#ifdef GRBL_STM32
 	Step_Set_Enable();
 	Step_Reset_Enable();
 	Step_Set_DisableIRQ();

@@ -47,13 +47,13 @@
   */
   
 /**
-  * @brief STM32 Family
+  * @brief GRBL_STM32 Family
   */
-#if !defined  (STM32F4)
-#define STM32F4
-#endif /* STM32F4 */
+#if !defined  (GRBL_STM32F4)
+#define GRBL_STM32F4
+#endif /* GRBL_STM32F4 */
 
-/* Uncomment the line below according to the target STM32 device used in your
+/* Uncomment the line below according to the target GRBL_STM32 device used in your
    application 
   */
 #if !defined (STM32F405xx) && !defined (STM32F415xx) && !defined (STM32F407xx) && !defined (STM32F417xx) && \

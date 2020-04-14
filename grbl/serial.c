@@ -22,11 +22,11 @@
 
 #include "grbl.h"
 
-#ifdef STM32
+#ifdef GRBL_STM32
   #ifdef STM32F1
 		#define pUSART ((USART_TypeDef *) USART1_BASE)
   #endif
-  #ifdef STM32F4
+  #ifdef GRBL_STM32F4
 		#define pUSART ((USART_TypeDef *) USART1_BASE)
   #endif
 
@@ -99,7 +99,7 @@ void serial_init()
 // Writes one byte to the TX serial buffer. Called by main program.
 void serial_write(uint8_t data)
 {
-#ifdef STM32
+#ifdef GRBL_STM32
 	uart_sendch(data);
 #elif ATMEGA328P
 
@@ -159,7 +159,7 @@ uint8_t serial_read()
   }
 }
 
-#ifdef STM32
+#ifdef GRBL_STM32
 void HandleUartIT(uint8_t data)
 {
 	uint8_t next_head;
