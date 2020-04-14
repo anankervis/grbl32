@@ -43,7 +43,7 @@
       <CPPLanguageStandard>
       </CPPLanguageStandard>
       <AdditionalIncludeDirectories>../stm32;../grbl;f4;Drivers\CMSIS\Include;Drivers\CMSIS\Device\ST\STM32F4xx\Include;Drivers\STM32F4xx_HAL_Driver\Inc;Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GRBL_STM32F46;GRBL_STM32F4_3;USE_FULL_LL_DRIVER;flash_layout;STM32;STM32F4;STM32F407xx;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GRBL_STM32F46;GRBL_STM32F4_3;USE_FULL_LL_DRIVER;USE_HAL_DRIVER;flash_layout;STM32;STM32F4;STM32F407xx;__packed=__attribute__((__packed__));__weak=__attribute__((weak));%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard />
     </ClCompile>
@@ -59,7 +59,7 @@
       <CPPLanguageStandard>
       </CPPLanguageStandard>
       <AdditionalIncludeDirectories>../stm32;../grbl;f4;Drivers\CMSIS\Include;Drivers\CMSIS\Device\ST\STM32F4xx\Include;Drivers\STM32F4xx_HAL_Driver\Inc;Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GRBL_STM32F46;GRBL_STM32F4_3;USE_FULL_LL_DRIVER;flash_layout;STM32;STM32F4;STM32F407xx;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GRBL_STM32F46;GRBL_STM32F4_3;USE_FULL_LL_DRIVER;USE_HAL_DRIVER;flash_layout;STM32;STM32F4;STM32F407xx;__packed=__attribute__((__packed__));__weak=__attribute__((weak));%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard />
     </ClCompile>
