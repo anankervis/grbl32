@@ -1,3 +1,5 @@
+#pragma once
+
 /*
   spindle_control.h - spindle control methods
   Part of Grbl
@@ -20,16 +22,12 @@
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef spindle_control_h
-#define spindle_control_h
-
 #define SPINDLE_NO_SYNC false
 #define SPINDLE_FORCE_SYNC true
 
 #define SPINDLE_STATE_DISABLE  0  // Must be zero.
 #define SPINDLE_STATE_CW       bit(0)
 #define SPINDLE_STATE_CCW      bit(1)
-
 
 // Initializes spindle pins and hardware PWM, if enabled.
 void spindle_init();
@@ -41,41 +39,32 @@ uint8_t spindle_get_state();
 // Immediately sets spindle running state with direction and spindle rpm via PWM, if enabled.
 // Called by spindle_sync() after sync and parking motion/spindle stop override during restore.
 #ifdef VARIABLE_SPINDLE
+# define SPINDLE_PWM_TYPE    uint16_t
 
-	#ifdef STM32
-		#define SPINDLE_PWM_TYPE    uint16_t
-	#else
-		#define SPINDLE_PWM_TYPE    uint8_t
-	#endif
+// Called by g-code parser when setting spindle state and requires a buffer sync.
+void spindle_sync(uint8_t state, float rpm);
 
-
-  // Called by g-code parser when setting spindle state and requires a buffer sync.
-  void spindle_sync(uint8_t state, float rpm);
-
-  // Sets spindle running state with direction, enable, and spindle PWM.
-  void spindle_set_state(uint8_t state, float rpm); 
+// Sets spindle running state with direction, enable, and spindle PWM.
+void spindle_set_state(uint8_t state, float rpm); 
   
-  // Sets spindle PWM quickly for stepper ISR. Also called by spindle_set_state().
-  // NOTE: 328p PWM register is 8-bit.
-  void spindle_set_speed(SPINDLE_PWM_TYPE pwm_value);
+// Sets spindle PWM quickly for stepper ISR. Also called by spindle_set_state().
+// NOTE: 328p PWM register is 8-bit.
+void spindle_set_speed(SPINDLE_PWM_TYPE pwm_value);
   
-  // Computes 328p-specific PWM register value for the given RPM for quick updating.
-  SPINDLE_PWM_TYPE  spindle_compute_pwm_value(float rpm);
-  
+// Computes 328p-specific PWM register value for the given RPM for quick updating.
+SPINDLE_PWM_TYPE  spindle_compute_pwm_value(float rpm);
+
 #else
   
-  // Called by g-code parser when setting spindle state and requires a buffer sync.
-  #define spindle_sync(state, rpm) _spindle_sync(state)
-  void _spindle_sync(uint8_t state);
+// Called by g-code parser when setting spindle state and requires a buffer sync.
+#define spindle_sync(state, rpm) _spindle_sync(state)
+void _spindle_sync(uint8_t state);
 
-  // Sets spindle running state with direction and enable.
-  #define spindle_set_state(state, rpm) _spindle_set_state(state)
-  void _spindle_set_state(uint8_t state);
+// Sets spindle running state with direction and enable.
+#define spindle_set_state(state, rpm) _spindle_set_state(state)
+void _spindle_set_state(uint8_t state);
 
 #endif
 
 // Stop and start spindle routines. Called by all spindle routines and stepper ISR.
 void spindle_stop();
-
-
-#endif

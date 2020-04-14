@@ -442,44 +442,28 @@ uint8_t gc_execute_line(char *line)
 			 words (I,J,K,L,P,R) have multiple connotations and/or depend on the issued commands. */
 			switch (letter)
 			{
-#if ( defined(STM32F1_4) || defined(STM32F4_4) )
-			case 'A':
-			word_bit = WORD_A;
-			gc_block.values.xyz[A_AXIS] = value;
-			axis_words |= (1 << A_AXIS);
-			break;
-#endif
-#if ( defined(STM32F1_5) || defined(STM32F4_5) )
-			case 'A':
-			word_bit = WORD_A;
-			gc_block.values.xyz[A_AXIS] = value;
-			axis_words |= (1 << A_AXIS);
-			break;
-			case 'B':
-			word_bit = WORD_B;
-			gc_block.values.xyz[B_AXIS] = value;
-			axis_words |= (1 << B_AXIS);
-			break;
-#endif
-#if ( defined(STM32F1_6) || defined(STM32F4_6) )
+#if AXIS_COUNT >= 4
 			case 'A':
 				word_bit = WORD_A;
 				gc_block.values.xyz[A_AXIS] = value;
 				axis_words |= (1 << A_AXIS);
 				break;
+#endif
+#if AXIS_COUNT >= 5
 			case 'B':
 				word_bit = WORD_B;
 				gc_block.values.xyz[B_AXIS] = value;
 				axis_words |= (1 << B_AXIS);
 				break;
+#endif
+#if AXIS_COUNT >= 6
 			case 'C':
 				word_bit = WORD_C;
 				gc_block.values.xyz[C_AXIS] = value;
 				axis_words |= (1 << C_AXIS);
 				break;
 #endif
-				// case 'D': // Not supported
-
+			// case 'D': // Not supported
 			case 'E':
 				word_bit = WORD_E;
 				gc_block.values.e = int_value;
@@ -488,7 +472,7 @@ uint8_t gc_execute_line(char *line)
 				word_bit = WORD_F;
 				gc_block.values.f = value;
 				break;
-				// case 'H': // Not supported
+			// case 'H': // Not supported
 			case 'I':
 				word_bit = WORD_I;
 				gc_block.values.ijk[X_AXIS] = value;
@@ -760,7 +744,7 @@ uint8_t gc_execute_line(char *line)
 	uint8_t idx;
 	if (gc_block.modal.units == UNITS_MODE_INCHES)
 	{
-		for (idx = 0; idx < N_AXIS; idx++)
+		for (idx = 0; idx < AXIS_COUNT; idx++)
 		{ // Axes indices are consistent, so loop may be used.
 			if (bit_istrue(axis_words, bit(idx)))
 			{
@@ -795,7 +779,7 @@ uint8_t gc_execute_line(char *line)
 	// is active. The read pauses the processor temporarily and may cause a rare crash. For
 	// future versions on processors with enough memory, all coordinate data should be stored
 	// in memory and written to EEPROM only when there is not a cycle active.
-	float block_coord_system[N_AXIS];
+	float block_coord_system[AXIS_COUNT];
 	memcpy(block_coord_system, gc_state.coord_system,
 			sizeof(gc_state.coord_system));
 	if (bit_istrue(command_words, bit(MODAL_GROUP_G12)))
@@ -876,7 +860,7 @@ uint8_t gc_execute_line(char *line)
 		} // [EEPROM read fail]
 
 		// Pre-calculate the coordinate data changes.
-		for (idx = 0; idx < N_AXIS; idx++)
+		for (idx = 0; idx < AXIS_COUNT; idx++)
 		{ // Axes indices are consistent, so loop may be used.
 			// Update axes defined only in block. Always in machine coordinates. Can change non-active system.
 			if (bit_istrue(axis_words, bit(idx)))
@@ -909,7 +893,7 @@ uint8_t gc_execute_line(char *line)
 
 		// Update axes defined only in block. Offsets current system to defined value. Does not update when
 		// active coordinate system is selected, but is still active unless G92.1 disables it.
-		for (idx = 0; idx < N_AXIS; idx++)
+		for (idx = 0; idx < AXIS_COUNT; idx++)
 		{ // Axes indices are consistent, so loop may be used.
 			if (bit_istrue(axis_words, bit(idx)))
 			{
@@ -938,7 +922,7 @@ uint8_t gc_execute_line(char *line)
 		{ // TLO block any axis command.
 			if (axis_words)
 			{
-				for (idx = 0; idx < N_AXIS; idx++)
+				for (idx = 0; idx < AXIS_COUNT; idx++)
 				{ // Axes indices are consistent, so loop may be used to save flash space.
 					if (bit_isfalse(axis_words, bit(idx)))
 					{
@@ -995,7 +979,7 @@ uint8_t gc_execute_line(char *line)
 			if (axis_words)
 			{
 				// Move only the axes specified in secondary move.
-				for (idx = 0; idx < N_AXIS; idx++)
+				for (idx = 0; idx < AXIS_COUNT; idx++)
 				{
 					if (!(axis_words & (1 << idx)))
 					{
@@ -1217,7 +1201,7 @@ uint8_t gc_execute_line(char *line)
 					// Convert IJK values to proper units.
 					if (gc_block.modal.units == UNITS_MODE_INCHES)
 					{
-						for (idx = 0; idx < N_AXIS; idx++)
+						for (idx = 0; idx < AXIS_COUNT; idx++)
 						{ // Axes indices are consistent, so loop may be used to save flash space.
 							if (ijk_words & bit(idx))
 							{
@@ -1552,7 +1536,7 @@ uint8_t gc_execute_line(char *line)
 	if (gc_state.modal.coord_select != gc_block.modal.coord_select)
 	{
 		gc_state.modal.coord_select = gc_block.modal.coord_select;
-		memcpy(gc_state.coord_system, block_coord_system, N_AXIS * sizeof(float));
+		memcpy(gc_state.coord_system, block_coord_system, AXIS_COUNT * sizeof(float));
 		system_flag_wco_change();
 	}
 
@@ -1573,7 +1557,7 @@ uint8_t gc_execute_line(char *line)
 		if (gc_state.modal.coord_select == coord_select)
 		{
 			memcpy(gc_state.coord_system, gc_block.values.ijk,
-			N_AXIS * sizeof(float));
+			AXIS_COUNT * sizeof(float));
 			system_flag_wco_change();
 		}
 		break;
@@ -1587,7 +1571,7 @@ uint8_t gc_execute_line(char *line)
 			mc_line(gc_block.values.xyz, pl_data);
 		}
 		mc_line(gc_block.values.ijk, pl_data);
-		memcpy(gc_state.position, gc_block.values.ijk, N_AXIS * sizeof(float));
+		memcpy(gc_state.position, gc_block.values.ijk, AXIS_COUNT * sizeof(float));
 		break;
 	case NON_MODAL_SET_HOME_0:
 		settings_write_coord_data(SETTING_INDEX_G28, gc_state.position);

@@ -225,7 +225,7 @@ typedef struct {
 
 typedef struct {
   float f;         // Feed
-  float ijk[N_AXIS];    // I,J,K Axis arc offsets
+  float ijk[AXIS_COUNT];    // I,J,K Axis arc offsets
   uint8_t l;       // G10 or canned cycles parameters
   int32_t n;       // Line number
   float p;         // G10 or dwell parameters; also for M62,M63 digital controls if enabled
@@ -233,7 +233,7 @@ typedef struct {
   float r;         // Arc radius
   float s;         // Spindle speed
   uint8_t t;       // Tool selection
-  float xyz[N_AXIS];    // X,Y,Z Translational axes
+  float xyz[AXIS_COUNT];    // X,Y,Z Translational axes
   uint8_t e;			//-- for M67 analog output, similar to LinuxCNC
   float q;				//-- for M67 analog output, similar to LinuxCNC
 } gc_values_t;
@@ -247,11 +247,11 @@ typedef struct {
   uint8_t tool;                 // Tracks tool number. NOT USED.
   int32_t line_number;          // Last line number sent
 
-  float position[N_AXIS];       // Where the interpreter considers the tool to be at this point in the code
+  float position[AXIS_COUNT];       // Where the interpreter considers the tool to be at this point in the code
 
-  float coord_system[N_AXIS];    // Current work coordinate system (G54+). Stores offset from absolute machine
+  float coord_system[AXIS_COUNT];    // Current work coordinate system (G54+). Stores offset from absolute machine
                                  // position in mm. Loaded from EEPROM when called.
-  float coord_offset[N_AXIS];    // Retains the G92 coordinate offset (work coordinates) relative to
+  float coord_offset[AXIS_COUNT];    // Retains the G92 coordinate offset (work coordinates) relative to
                                  // machine zero in mm. Non-persistent. Cleared upon reset and boot.
   float tool_length_offset;      // Tracks tool length offset value when enabled.
 } parser_state_t;

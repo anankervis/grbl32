@@ -1,3 +1,5 @@
+#pragma once
+
 /*
   stepper.h - stepper motor driver: executes motion plans of planner.c using the stepper motors
   Part of Grbl
@@ -20,19 +22,10 @@
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef stepper_h
-#define stepper_h
-
 #include "g32core.h"
 
-
 #ifndef SEGMENT_BUFFER_SIZE
-	#ifdef STM32
-		#define SEGMENT_BUFFER_SIZE 32
-	#endif
-	#ifdef ATMEGA328P
-  	#define SEGMENT_BUFFER_SIZE 6
-	#endif
+# define SEGMENT_BUFFER_SIZE 32
 #endif
 
 // Initialize and setup the stepper motor subsystem
@@ -65,10 +58,5 @@ void st_update_plan_block_parameters();
 // Called by realtime status reporting if realtime rate reporting is enabled in config.h.
 float st_get_realtime_rate();
 
-#ifdef STM32
-	void HandleStepSetIT(void);
-	void HandleStepResetIT(void);
-#endif
-
-
-#endif
+void HandleStepSetIT(void);
+void HandleStepResetIT(void);

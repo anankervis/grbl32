@@ -102,9 +102,6 @@
     <ClCompile Include="..\stm32\inoutputs.c">
       <Filter>stm32</Filter>
     </ClCompile>
-    <ClCompile Include="..\stm32\lcd-i2c.c">
-      <Filter>stm32</Filter>
-    </ClCompile>
     <ClCompile Include="..\stm32\stm32utilities.c">
       <Filter>stm32</Filter>
     </ClCompile>
@@ -240,13 +237,7 @@
     <ClInclude Include="..\stm32\g32core.h">
       <Filter>stm32</Filter>
     </ClInclude>
-    <ClInclude Include="..\stm32\g6core.h">
-      <Filter>stm32</Filter>
-    </ClInclude>
     <ClInclude Include="..\stm32\inoutputs.h">
-      <Filter>stm32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\stm32\lcd-i2c.h">
       <Filter>stm32</Filter>
     </ClInclude>
     <ClInclude Include="..\stm32\stm32eeprom.h">

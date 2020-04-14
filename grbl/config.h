@@ -1,3 +1,5 @@
+#pragma once
+
 /*
   config.h - compile time configuration
   Part of Grbl
@@ -23,27 +25,6 @@
 // This file contains compile-time configurations for Grbl's internal system. For the most part,
 // users will not need to directly modify these, but they are here for specific needs, i.e.
 // performance tuning or adjusting to non-typical machines.
-
-// IMPORTANT: Any changes here requires a full re-compiling of the source code to propagate them.
-
-#ifndef config_h
-#define config_h
-#include "grbl.h" // For Arduino IDE compatibility.
-
-
-// Define CPU pin map and default settings.
-// NOTE: OEMs can avoid the need to maintain/update the defaults.h and cpu_map.h files and use only
-// one configuration file by placing their specific defaults and pin map at the bottom of this file.
-// If doing so, simply comment out these two defines and see instructions below.
-//#define DEFAULTS_GENERIC
-//#define CPU_MAP_ATMEGA328P // Arduino Uno CPU
-#define DEFAULTS_GRBL32      // Defaults for GRBL32
-
-// Serial baud rate
-// #define BAUD_RATE 230400
-//#define BAUD_RATE 115200
-//#define BAUD_RATE 921600
-// #define BAUD_RATE 1000000
 
 // Define realtime command special characters. These characters are 'picked-off' directly from the
 // serial read data stream and are not passed to the grbl line execution parser. Select characters
@@ -298,18 +279,7 @@
 // NOTE: Changing this value also changes the execution time of a segment in the step segment buffer.
 // When increasing this value, this stores less overall time in the segment buffer and vice versa. Make
 // certain the step segment buffer is increased/decreased to account for these changes.
-#ifdef ATMEGA328P
-#define ACCELERATION_TICKS_PER_SECOND 100
-#endif
-
-#ifdef STM32F1
 #define ACCELERATION_TICKS_PER_SECOND 5000
-#endif
-#ifdef STM32F4
-#define ACCELERATION_TICKS_PER_SECOND 5000
-#endif
-
-
 
 // Adaptive Multi-Axis Step Smoothing (AMASS) is an advanced feature that does what its name implies,
 // smoothing the stepping of multi-axis motions. This feature smooths motion particularly at low step
@@ -727,9 +697,3 @@
  *              1: call set enable pin normal.
  *              2: call set enable pin inverted
  */
-
-
-
-
-
-#endif //-- inclusion

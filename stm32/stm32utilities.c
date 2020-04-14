@@ -24,74 +24,56 @@
 #include <string.h>
 
 //-- Steps and Directions Pin Arrays --------------
-#if ( defined(STM32F1_3) || defined(GRBL_STM32F4_3) )
-const PIN_MASK step_pin_mask[N_AXIS] =
-{	STEP_X_Pin, STEP_Y_Pin, STEP_Z_Pin};
-const PIN_MASK direction_pin_mask[N_AXIS] =
-{	DIR_X_Pin, DIR_Y_Pin, DIR_Z_Pin};
+const PIN_MASK step_pin_mask[AXIS_COUNT] =
+{
+	STEP_X_Pin,
+	STEP_Y_Pin,
+	STEP_Z_Pin,
+#if AXIS_COUNT >= 4
+	STEP_A_Pin,
 #endif
-#if ( defined(STM32F1_4) || defined(STM32F4_4) )
-const PIN_MASK step_pin_mask[N_AXIS] =
-{	STEP_X_Pin, STEP_Y_Pin, STEP_Z_Pin, STEP_A_Pin};
-const PIN_MASK direction_pin_mask[N_AXIS] =
-{	DIR_X_Pin, DIR_Y_Pin, DIR_Z_Pin, DIR_A_Pin};
+#if AXIS_COUNT >= 5
+	STEP_B_Pin,
 #endif
-#if ( defined(STM32F1_5) || defined(STM32F4_5) )
-const PIN_MASK step_pin_mask[N_AXIS] =
-{	STEP_X_Pin, STEP_Y_Pin, STEP_Z_Pin, STEP_A_Pin, STEP_B_Pin};
-const PIN_MASK direction_pin_mask[N_AXIS] =
-{	DIR_X_Pin, DIR_Y_Pin, DIR_Z_Pin, DIR_A_Pin, DIR_B_Pin};
+#if AXIS_COUNT >= 6
+	STEP_C_Pin,
 #endif
-#if ( defined(STM32F1_6) || defined(STM32F4_6) )
-const PIN_MASK step_pin_mask[N_AXIS] =
-{ STEP_X_Pin, STEP_Y_Pin, STEP_Z_Pin, STEP_A_Pin, STEP_B_Pin, STEP_C_Pin };
-const PIN_MASK direction_pin_mask[N_AXIS] =
-{ DIR_X_Pin, DIR_Y_Pin, DIR_Z_Pin, DIR_A_Pin, DIR_B_Pin, DIR_C_Pin };
+};
+const PIN_MASK direction_pin_mask[AXIS_COUNT] =
+{
+	DIR_X_Pin,
+	DIR_Y_Pin,
+	DIR_Z_Pin,
+#if AXIS_COUNT >= 4
+	DIR_A_Pin,
 #endif
+#if AXIS_COUNT >= 5
+	DIR_B_Pin,
+#endif
+#if AXIS_COUNT >= 6
+	DIR_C_Pin,
+#endif
+};
 
 //-- Limits  Pin Arrays
-#ifdef STM32F1_3
-const PIN_MASK limit_pin_mask[N_AXIS] =
-{	LIM_X_Pin, LIM_Y_Pin, LIM_Z_Pin};
-#endif
-#ifdef STM32F1_4
-const PIN_MASK limit_pin_mask[N_AXIS] =
-{	LIM_X_Pin, LIM_Y_Pin, LIM_Z_Pin, LIM_A_Pin};
-#endif
-#ifdef STM32F1_5
-const PIN_MASK limit_pin_mask[N_AXIS] =
-{	LIM_X_Pin, LIM_Y_Pin, LIM_Z_Pin, LIM_A_Pin, LIM_B_Pin};
-#endif
-#ifdef STM32F1_6
-const PIN_MASK limit_pin_mask[N_AXIS] =
-{	LIM_X_Pin, LIM_Y_Pin, LIM_Z_Pin, LIM_A_Pin, LIM_B_Pin, LIM_C_Pin};
-#endif
 /*
  * For the F46, Limits are on SPI expandedIO, not MCU pins, we'll organize the pins sequentially
  */
-#ifdef GRBL_STM32F4_3
-const PIN_MASK limit_pin_mask[N_AXIS] =
-{	0x01, 0x02, 0x04};
+const PIN_MASK limit_pin_mask[AXIS_COUNT] =
+{
+	0x01,
+	0x02,
+	0x04,
+#if AXIS_COUNT >= 4
+	0x08,
 #endif
-#ifdef STM32F4_4
-const PIN_MASK limit_pin_mask[N_AXIS] =
-{	0x01, 0x02, 0x04, 0x08};
+#if AXIS_COUNT >= 5
+	0x10,
 #endif
-#ifdef STM32F4_5
-const PIN_MASK limit_pin_mask[N_AXIS] =
-{	0x01, 0x02, 0x04, 0x08, 0x10};
+#if AXIS_COUNT >= 6
+	0x20,
 #endif
-#ifdef STM32F4_6
-const PIN_MASK limit_pin_mask[N_AXIS] =
-{ 0x01, 0x02, 0x04, 0x08, 0x10, 0x20 };
-#endif
-
-#ifdef STM32F1
-char *pHello = "Hi G32F1\r\n";
-#endif
-#ifdef  STM32F4
-char *pHello = "Hi G32F4\r\n";
-#endif
+};
 
 uint32_t uTICKS_PER_MICROSECOND = 0;
 float fTICKS_PER_MINUTE = 0.0f;
@@ -221,40 +203,6 @@ for (uint32_t i = 0; i < 20000; i++)
 	// --might be some sort of interference between TX and RX happening at the same time (but that doesn't appear to be my case)
 }
 
-
-
-
-//------------------------------------------------------------------------
-//------------------------------------------------------------------------
-#ifdef STM32F13
-void Spindle_Disable()
-{
-#ifdef VARIABLE_SPINDLE_ENABLE_PIN
-  if (settings.spindle_enable_pin_mode == 1)
-    ResetSpindleEnablebit();
-  else
-    SetSpindleEnablebit();
-#endif
-
-  LL_TIM_DisableAllOutputs(SPINDLE_TIMER);
-}
-
-void Spindle_Enable()
-{
-#ifdef VARIABLE_SPINDLE_ENABLE_PIN
-  if (settings.spindle_enable_pin_mode == 1)
-    SetSpindleEnablebit();
-  else
-    ResetSpindleEnablebit();
-#endif
-
-  LL_TIM_EnableAllOutputs(SPINDLE_TIMER);
-}
-#endif
-
-
-    //------------------------------------------------------------------------
-//------------------------------------------------------------------------
 //-- Pin based calls, need to use HAL since LL pins and HAL pins are incompatible for F1
 void GPIO_ResetBits(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)
 {
@@ -266,7 +214,7 @@ void GPIO_SetBits(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)
 }
 //------------------------------------------------------------------------
 
-#ifdef GRBL_STM32F46   //-- board specific hardware, SPI driven limits
+//-- board specific hardware, SPI driven limits
 uint8_t SPIDataC0W[3]; // 		= { 0x40, 0x00, 0x00 };		//-- Chip0, Limits P & N
 uint8_t SPIDataC0R[3]; //		= { 0x41, 0x00, 0x00 };
 uint8_t SPIDataC1W[3]; // 		= { 0x66, 0x00, 0x00 };		//-- Chip1, Home and ExpansionIO
@@ -323,7 +271,6 @@ void DebugRead(enum IOExpChip IOC, uint8_t Reg)
 	uint8_t Val = SPIRead(IOC, Reg);
 	sprintf(pDbgStr, "\r\nChip:%d|Reg:%d|Val:%d\r\n", IOC, Reg, Val);
 	uart_sendstr(pDbgStr);
-
 }
 //----------------------------------------------------------------------
 void SPIInit(SPI_HandleTypeDef *HSPI)
@@ -479,9 +426,6 @@ uint16_t GetLimitsState()
 	PortA = SPIRead(IOC0, SPI_GPIOA); //-- axes BC in high nibble
 	PortB = SPIRead(IOC0, SPI_GPIOB); //-- axis XYZA
 
-//	debugValA = SPIRead(IOC0,SPI_DEFVALA);
-//	debugValB = SPIRead(IOC0,SPI_DEFVALB);
-
 	//-- go through the axes
 	if (((PortB & LIM_XP_Pin) == 0) || ((PortB & LIM_XN_Pin) == 0))
 		uActiveLimitsMask += 0x01;
@@ -497,16 +441,8 @@ uint16_t GetLimitsState()
 	if (((PortA & LIM_CP_Pin) == 0) || ((PortA & LIM_CN_Pin) == 0))
 		uActiveLimitsMask += 0x20;
 
-	/*
-	 sprintf(pDbgStr,"\r\nLimState:A:%d:%s|B:%d:%s|Mask:%d:%s\r\n",
-	 PortA,ByteToBin(PortA,pDbgVal8a),
-	 PortB,ByteToBin(PortB,pDbgVal8b),
-	 uActiveLimitsMask,Int16ToBin(uActiveLimitsMask,pDbgVal16) );
-	 uart_sendstr(pDbgStr);
-	 */
-
 	//EnableLimitsINT();		//-- enable limits interrupt
-	return (uActiveLimitsMask);
+	return uActiveLimitsMask;
 }
 
 //----------------------------------------------------------------------
@@ -517,18 +453,10 @@ uint8_t ReadInputByte()
 {
 	uint8_t val = SPIRead(IOC1, SPI_GPIOA);
 
-	//sprintf(pDbgStr,"\r\ninput:%s\r\n",ByteToBin(val,pDbgVal8a));
-	//uart_sendstr(pDbgStr);
-
 	return (val);
 }
 
-#endif //GRBL_STM32F46
-
 void spi_limits_init()
 {
-#ifdef GRBL_STM32F46 //-- board specific hardware, SPI driven limits
 	SPIInit(&hspi3);
-#endif
 }
-

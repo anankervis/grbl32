@@ -1,3 +1,5 @@
+#pragma once
+
 /*
   motion_control.h - high level interface for issuing motion commands
   Part of Grbl
@@ -20,9 +22,7 @@
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef motion_control_h
-#define motion_control_h
-
+#include "g32core.h"
 
 // System motion commands must have a line number of zero.
 #define HOMING_CYCLE_LINE_NUMBER 0
@@ -33,17 +33,14 @@
 #define HOMING_CYCLE_Y    bit(Y_AXIS)
 #define HOMING_CYCLE_Z    bit(Z_AXIS)
 
-#if ( defined(STM32F1_4) || defined(STM32F4_4) )
-	#define HOMING_CYCLE_A    bit(A_AXIS)
+#if AXIS_COUNT >= 4
+# define HOMING_CYCLE_A    bit(A_AXIS)
 #endif
-#if ( defined(STM32F1_5) || defined(STM32F4_5) )
-	#define HOMING_CYCLE_A    bit(A_AXIS)
-	#define HOMING_CYCLE_B    bit(B_AXIS)
+#if AXIS_COUNT >= 5
+# define HOMING_CYCLE_B    bit(B_AXIS)
 #endif
-#if ( defined(STM32F1_6) || defined(STM32F4_6) )
-	#define HOMING_CYCLE_A    bit(A_AXIS)
-	#define HOMING_CYCLE_B    bit(B_AXIS)
-	#define HOMING_CYCLE_C    bit(C_AXIS)
+#if AXIS_COUNT >= 6
+# define HOMING_CYCLE_C    bit(C_AXIS)
 #endif
 
 // Execute linear motion in absolute millimeter coordinates. Feed rate given in millimeters/second
@@ -75,5 +72,3 @@ void mc_parking_motion(float *parking_target, plan_line_data_t *pl_data);
 
 // Performs system reset. If in motion state, kills all motion and sets system alarm.
 void mc_reset();
-
-#endif

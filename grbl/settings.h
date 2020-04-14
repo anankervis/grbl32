@@ -1,3 +1,5 @@
+#pragma once
+
 /*
   settings.h - eeprom configuration handling
   Part of Grbl
@@ -20,27 +22,11 @@
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef settings_h
-#define settings_h
-
 #include "grbl.h"
-
 
 // Version of the EEPROM data. Will be used to migrate existing data from older versions of Grbl
 // when firmware is upgraded. Always stored in byte 0 of eeprom
-#if ( defined(STM32F1_3) || defined(GRBL_STM32F4_3) )
-	#define SETTINGS_VERSION 13  // NOTE: Check settings_reset() when moving to next version.
-#endif
-#if ( defined(STM32F1_4) || defined(STM32F4_4) )
-	#define SETTINGS_VERSION 12
-#endif
-#if ( defined(STM32F1_5) || defined(STM32F4_5) )
-	#define SETTINGS_VERSION 11
-#endif
-#if ( defined(STM32F1_6) || defined(STM32F4_6) )
-	#define SETTINGS_VERSION 10
-#endif
-
+#define SETTINGS_VERSION ((9 << 3) | AXIS_COUNT)  // NOTE: Check settings_reset() when moving to next version.
 
 // Define bit flag masks for the boolean settings in settings.flag.
 #define BITFLAG_REPORT_INCHES      bit(0)
@@ -51,7 +37,6 @@
 #define BITFLAG_SOFT_LIMIT_ENABLE  bit(5)
 #define BITFLAG_INVERT_LIMIT_PINS  bit(6)
 #define BITFLAG_INVERT_PROBE_PIN   bit(7)
-
 
 // Define status reporting boolean enable bit flags in settings.status_report_mask
 #define BITFLAG_RT_STATUS_POSITION_TYPE     bit(0)
@@ -91,14 +76,13 @@
 // Global persistent settings (Stored from byte EEPROM_ADDR_GLOBAL onwards)
 typedef struct {
   // Axis settings
-  float steps_per_mm[N_AXIS];
-  float max_rate[N_AXIS];
-  float eeacceleration[N_AXIS];
-  float max_travel[N_AXIS];
+  float steps_per_mm[AXIS_COUNT];
+  float max_rate[AXIS_COUNT];
+  float eeacceleration[AXIS_COUNT];
+  float max_travel[AXIS_COUNT];
 
   // Remaining Grbl settings
-//  uint8_t pulse_microseconds;
-  float fpulse_microseconds;			// changed to float for STM32F4 500KHz rate
+  float fpulse_microseconds; // changed to float for STM32F4 500KHz rate
   uint8_t step_invert_mask;
   uint8_t dir_invert_mask;
   uint8_t stepper_idle_lock_time; // If max value 255, steppers do not disable.
@@ -127,8 +111,8 @@ extern settings_t settings;
 #ifdef ENABLE_ACCEL_SCALING
 	typedef struct
 	{
-		float accel_scaling[N_AXIS];
-		float accel_adjusted[N_AXIS];
+		float accel_scaling[AXIS_COUNT];
+		float accel_adjusted[AXIS_COUNT];
 	} adjustments_t;
 	extern adjustments_t adjustments;
 
@@ -162,16 +146,3 @@ void settings_write_coord_data(uint8_t coord_select, float *coord_data);
 
 // Reads selected coordinate data from EEPROM
 uint8_t settings_read_coord_data(uint8_t coord_select, float *coord_data);
-
-#ifdef ATMEGA328P
-// Returns the step pin mask according to Grbl's internal axis numbering
-uint8_t get_step_pin_mask(uint8_t i);
-
-// Returns the direction pin mask according to Grbl's internal axis numbering
-uint8_t get_direction_pin_mask(uint8_t i);
-
-// Returns the limit pin mask according to Grbl's internal axis numbering
-uint8_t get_limit_pin_mask(uint8_t i);
-#endif
-
-#endif

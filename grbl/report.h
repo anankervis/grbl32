@@ -1,3 +1,5 @@
+#pragma once
+
 /*
   report.h - reporting and messaging methods
   Part of Grbl
@@ -18,14 +20,8 @@
   You should have received a copy of the GNU General Public License
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef report_h
-#define report_h
 
-#ifdef STM32
-	#define STATUS_SETTING_STEP_PULSE_MIN_LIMIT	0.01f
-#elif ATMEGA328P
-	#define STATUS_SETTING_STEP_PULSE_MIN_LIMIT	3
-#endif
+#define STATUS_SETTING_STEP_PULSE_MIN_LIMIT	0.01f
 
 // Define Grbl status codes. Valid values (0-255)
 #define STATUS_OK 0
@@ -133,6 +129,4 @@ void report_build_info(char *line);
 
 #ifdef DEBUG
   void report_realtime_debug();
-#endif
-
 #endif

@@ -1,3 +1,5 @@
+#pragma once
+
 /*
   system.h - Header for system level commands and real-time processes
   Part of Grbl
@@ -18,9 +20,6 @@
   You should have received a copy of the GNU General Public License
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#ifndef system_h
-#define system_h
 
 #include "grbl.h"
 
@@ -148,8 +147,8 @@ typedef struct {
 extern system_t sys;
 
 // NOTE: These position variables may need to be declared as volatiles, if problems arise.
-extern int32_t sys_position[N_AXIS];      // Real-time machine (aka home) position vector in steps.
-extern int32_t sys_probe_position[N_AXIS]; // Last probe position in machine coordinates and steps.
+extern int32_t sys_position[AXIS_COUNT];      // Real-time machine (aka home) position vector in steps.
+extern int32_t sys_probe_position[AXIS_COUNT]; // Last probe position in machine coordinates and steps.
 
 extern volatile uint8_t sys_probe_state;   // Probing state value.  Used to coordinate the probing cycle with stepper ISR.
 extern volatile uint8_t sys_rt_exec_state;   // Global realtime executor bitflag variable for state management. See EXEC bitmasks.
@@ -176,7 +175,6 @@ uint8_t system_execute_line(char *line);
 
 // Execute the startup script lines stored in EEPROM upon initialization
 void system_execute_startup(char *line);
-
 
 void system_flag_wco_change();
 
@@ -205,10 +203,4 @@ void system_set_exec_accessory_override_flag(uint8_t mask);
 void system_clear_exec_motion_overrides();
 void system_clear_exec_accessory_overrides();
 
-
-#ifdef STM32
-	void HandleControlIT(uint16_t Control_Pin);
-#endif
-
-
-#endif
+void HandleControlIT(uint16_t Control_Pin);

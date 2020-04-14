@@ -1,3 +1,5 @@
+#pragma once
+
 /*
   grbl.h - main Grbl include file
   Part of Grbl
@@ -19,9 +21,6 @@
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef grbl_h
-#define grbl_h
-
 // Grbl versioning system
 #define GRBL_VERSION "1.1f:0.03"
 //#define GRBL_VERSION_BUILD "20170801"
@@ -29,21 +28,16 @@
 
 // Define standard libraries used by Grbl.
 #include <math.h>
-#ifdef STM32
-  #include "main.h"
-  #include "stm32utilities.h"
-  #include "inoutputs.h"
-  //#define PSTR(x) x
-	#define PSTR(x) (char*)x
-  #define pgm_read_byte_near(x) *(x)
-  void _delay_ms(uint32_t x);
-  void _delay_us(uint32_t x);
-  #define false 0
-  #define true 1
-  typedef int bool;
-  //#define NOEEPROMSUPPORT
-  #define printPgmString printString
-#endif
+
+#include "g32core.h"
+#include "main.h"
+#include "stm32utilities.h"
+#include "inoutputs.h"
+#define PSTR(x) (char*)(x)
+#define pgm_read_byte_near(x) *(x)
+void _delay_ms(uint32_t x);
+void _delay_us(uint32_t x);
+#define printPgmString printString
 
 #include <inttypes.h>
 #include <string.h>
@@ -56,8 +50,6 @@
 #include "nuts_bolts.h"
 #include "settings.h"
 #include "system.h"
-#include "defaults.h"
-#include "cpu_map.h"
 #include "planner.h"
 #include "coolant_control.h"
 #include "eeprom.h"
@@ -125,5 +117,3 @@
 #endif
 
 // ---------------------------------------------------------------------------------------
-
-#endif

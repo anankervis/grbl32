@@ -1,3 +1,5 @@
+#pragma once
+
 /*
   nuts_bolts.h - Header file for shared definitions, variables, and functions
   Part of Grbl
@@ -20,22 +22,17 @@
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef nuts_bolts_h
-#define nuts_bolts_h
-
 #include "g32core.h"
 
 // CoreXY motor assignments. DO NOT ALTER.
 // NOTE: If the A and B motor axis bindings are changed, this effects the CoreXY equations.
 #ifdef COREXY
- #define A_MOTOR X_AXIS // Must be X_AXIS
- #define B_MOTOR Y_AXIS // Must be Y_AXIS
+# define A_MOTOR X_AXIS // Must be X_AXIS
+# define B_MOTOR Y_AXIS // Must be Y_AXIS
 #endif
 
 // Conversions
-#ifdef STM32
 #define F_CPU SystemCoreClock
-#endif
 
 #define MM_PER_INCH (25.40)
 #define INCH_PER_MM (0.0393701)
@@ -44,11 +41,11 @@
 
 // Useful macros
 #define clear_vector(a) memset(a, 0, sizeof(a))
-#define clear_vector_float(a) memset(a, 0.0, sizeof(float)*N_AXIS)
-// #define clear_vector_long(a) memset(a, 0.0, sizeof(long)*N_AXIS)
+#define clear_vector_float(a) memset(a, 0.0, sizeof(float)*AXIS_COUNT)
+// #define clear_vector_long(a) memset(a, 0.0, sizeof(long)*AXIS_COUNT)
 #define max(a,b) (((a) > (b)) ? (a) : (b))
 #define min(a,b) (((a) < (b)) ? (a) : (b))
-#define isequal_position_vector(a,b) !(memcmp(a, b, sizeof(float)*N_AXIS))
+#define isequal_position_vector(a,b) !(memcmp(a, b, sizeof(float)*AXIS_COUNT))
 
 // Bit field and masking macros
 #define bit(n) (1 << n)
@@ -76,5 +73,3 @@ float hypot_f(float x, float y);
 
 float convert_delta_vector_to_unit_vector(float *vector);
 float limit_value_by_axis_maximum(float *max_value, float *unit_vec);
-
-#endif

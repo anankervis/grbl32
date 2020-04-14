@@ -92,7 +92,6 @@
     <ClCompile Include="..\grbl\stepper.c" />
     <ClCompile Include="..\grbl\system.c" />
     <ClCompile Include="..\stm32\inoutputs.c" />
-    <ClCompile Include="..\stm32\lcd-i2c.c" />
     <ClCompile Include="..\stm32\stm32utilities.c" />
     <ClCompile Include="Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c" />
     <ClCompile Include="Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c" />
@@ -163,9 +162,7 @@
     <ClInclude Include="..\grbl\stepper.h" />
     <ClInclude Include="..\grbl\system.h" />
     <ClInclude Include="..\stm32\g32core.h" />
-    <ClInclude Include="..\stm32\g6core.h" />
     <ClInclude Include="..\stm32\inoutputs.h" />
-    <ClInclude Include="..\stm32\lcd-i2c.h" />
     <ClInclude Include="..\stm32\stm32eeprom.h" />
     <ClInclude Include="..\stm32\stm32utilities.h" />
     <ClInclude Include="..\stm32\stm32_cpu_map.h" />

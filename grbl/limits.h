@@ -1,3 +1,5 @@
+#pragma once
+
 /*
   limits.h - code pertaining to limit-switches and performing the homing cycle
   Part of Grbl
@@ -20,10 +22,6 @@
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef limits_h
-#define limits_h
-
-
 // Initialize the limits module
 void limits_init();
 
@@ -41,8 +39,4 @@ void limits_go_home(uint8_t cycle_mask);
 // Check for soft limit violations
 void limits_soft_check(float *target);
 
-#ifdef STM32
-	void HandleLimitIT(void);
-#endif
-
-#endif
+void HandleLimitIT(void);

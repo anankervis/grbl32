@@ -1,3 +1,5 @@
+#pragma once
+
 /*
   serial.c - Low level functions for sending and recieving bytes via the serial port
   Part of Grbl
@@ -20,31 +22,12 @@
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef serial_h
-#define serial_h
+#define RX_BUFFER_SIZE 254
+#define TX_BUFFER_SIZE 128
 
-
-#ifdef STM32
-	#define RX_BUFFER_SIZE 254
-	#define TX_BUFFER_SIZE 128
-
-	void process_it_char(uint8_t data);
-
-#elif ATMEGA328P
-	#ifndef RX_BUFFER_SIZE
-		#define RX_BUFFER_SIZE 128
-	#endif
-	#ifndef TX_BUFFER_SIZE
-		#ifdef USE_LINE_NUMBERS
-			#define TX_BUFFER_SIZE 112
-		#else
-			#define TX_BUFFER_SIZE 104
-		#endif
-	#endif
-#endif
+void process_it_char(uint8_t data);
 
 #define SERIAL_NO_DATA 0xff
-
 
 void serial_init();
 
@@ -68,8 +51,4 @@ uint8_t serial_get_rx_buffer_count();
 // NOTE: Not used except for debugging and ensuring no TX bottlenecks.
 uint8_t serial_get_tx_buffer_count();
 
-#ifdef STM32
 void HandleUartIT(uint8_t data);
-#endif
-
-#endif
