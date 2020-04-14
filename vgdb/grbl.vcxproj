@@ -139,6 +139,7 @@
     <ClInclude Include="f4\stm32_assert.h" />
     <ClInclude Include="f4\tim.h" />
     <ClInclude Include="f4\usart.h" />
+    <None Include="grbl.ioc" />
     <None Include="stm32.props" />
     <ClInclude Include="..\grbl\config.h" />
     <ClInclude Include="..\grbl\coolant_control.h" />
