@@ -27,7 +27,7 @@
 
 
 // Axis array index values. Must start with 0 and be continuous.
-#ifdef GRBL_STM32
+#ifdef STM32
   #include "float.h"
   #define SOME_LARGE_VALUE FLT_MAX
 
@@ -46,7 +46,7 @@
   #endif
 
 
-	#ifdef GRBL_STM32F4
+	#ifdef STM32F4
 	  #define N_OUTPUTS_DIG 	8 // Number of digital outputs
 		#define N_INPUTS_DIG 		8 // Number of digital inputs
 		#define N_OUTPUTS_ANA 	8 // Number of analog outputs (PWM)
@@ -62,7 +62,7 @@
 		  #define N_OUTPUTS_ANA 	0 // Number of analog outputs (PWM)
     #endif
 	#endif
-#else //-- not GRBL_STM32
+#else //-- not STM32
   #define N_AXIS 3 // Number of axes
 	#define SOME_LARGE_VALUE 1.0E+38
 #endif
@@ -70,7 +70,7 @@
 #define X_AXIS 0 // Axis indexing value.
 #define Y_AXIS 1
 #define Z_AXIS 2
-#ifdef GRBL_STM32
+#ifdef STM32
   #if ( defined(STM32F1_4) || defined(STM32F4_4) )
     #define A_AXIS 3
   #endif

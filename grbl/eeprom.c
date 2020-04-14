@@ -33,7 +33,7 @@
  */
 
 
-#ifdef GRBL_STM32
+#ifdef STM32
 	#include <string.h>
   #include "stm32eeprom.h"
   #include "settings.h"
@@ -57,7 +57,7 @@
 #endif
 
 
-#ifdef GRBL_STM32
+#ifdef STM32
 void eeprom_flush()
 {
   uint32_t nAddress = EEPROM_START_ADDRESS;
@@ -72,7 +72,7 @@ void eeprom_flush()
   FLASH_WaitForLastOperation((uint32_t)FLASH_TIMEOUT_VALUE); //-- !!
   CLEAR_BIT(FLASH->CR, FLASH_CR_PER);
 #endif
-#ifdef GRBL_STM32F4
+#ifdef STM32F4
   __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP | FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | FLASH_FLAG_PGAERR | FLASH_FLAG_PGPERR | FLASH_FLAG_PGSERR);
   FLASH_Erase_Sector(EEPROM_START_SECTOR, VOLTAGE_RANGE_3);
   FLASH_WaitForLastOperation((uint32_t)FLASH_TIMEOUT_VALUE);
@@ -138,7 +138,7 @@ void eeprom_init()
  */
 unsigned char eeprom_get_char( unsigned int addr )
 {
-#ifdef GRBL_STM32
+#ifdef STM32
   return EE_Buffer[addr];
 #elif ATMEGA328P
 	do {} while( EECR & (1<<EEPE) ); // Wait for completion of previous write.
@@ -167,7 +167,7 @@ unsigned char eeprom_get_char( unsigned int addr )
  */
 void eeprom_put_char( unsigned int addr, unsigned char new_value )
 {
-#ifdef GRBL_STM32
+#ifdef STM32
   EE_Buffer[addr] = new_value;
 #elif ATMEGA328P
 
@@ -235,7 +235,7 @@ void memcpy_to_eeprom_with_checksum(unsigned int destination, char *source, unsi
   }
   eeprom_put_char(destination, checksum);
 
-#ifdef GRBL_STM32
+#ifdef STM32
   eeprom_flush();
 #endif
 

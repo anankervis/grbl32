@@ -29,7 +29,7 @@
 
 void spindle_init()
 {
-#ifdef GRBL_STM32
+#ifdef STM32
   pwm_gradient = SPINDLE_PWM_RANGE / (settings.rpm_max - settings.rpm_min);
 	Spindle_Timer_Init();
 
@@ -64,7 +64,7 @@ void spindle_init()
 
 uint8_t spindle_get_state()
 {
-#ifdef GRBL_STM32
+#ifdef STM32
   uint8_t pin = 0;
   #ifdef VARIABLE_SPINDLE
     #ifdef USE_SPINDLE_DIR_AS_ENABLE_PIN
@@ -129,7 +129,7 @@ uint8_t spindle_get_state()
 // Called by spindle_init(), spindle_set_speed(), spindle_set_state(), and mc_reset().
 void spindle_stop()
 {
-#ifdef GRBL_STM32
+#ifdef STM32
   #ifdef VARIABLE_SPINDLE
       Spindle_Disable();
 
@@ -174,7 +174,7 @@ void spindle_stop()
   // and stepper ISR. Keep routine small and efficient.
   void spindle_set_speed(SPINDLE_PWM_TYPE pwm_value)
   {
-  #ifdef GRBL_STM32
+  #ifdef STM32
   	Set_Spindle_Speed(pwm_value);
 
     #ifdef SPINDLE_ENABLE_OFF_WITH_ZERO_SPEED

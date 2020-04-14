@@ -33,7 +33,7 @@
 
 void limits_init()
 {
-#ifdef GRBL_STM32
+#ifdef STM32
   if (bit_isfalse(settings.flags, BITFLAG_HARD_LIMIT_ENABLE))
   {
   	limits_disable();
@@ -76,7 +76,7 @@ void limits_disable()
   NVIC_DisableIRQ(EXTI15_10_IRQn);
 #endif
 
-#ifdef GRBL_STM32F4
+#ifdef STM32F4
   NVIC_DisableIRQ(EXTI15_10_IRQn);
 //  HAL_NVIC_DisableIRQ(EXTI15_10_IRQn);
 #endif
@@ -92,7 +92,7 @@ void limits_disable()
 void limits_enable()
 {
 
-#ifdef GRBL_STM32F4
+#ifdef STM32F4
   NVIC_EnableIRQ(EXTI15_10_IRQn);
   EnableLimitsINT();
 #endif
@@ -105,12 +105,12 @@ void limits_enable()
 uint8_t limits_get_state()
 {
   uint8_t limit_state = 0;
-#ifdef GRBL_STM32
+#ifdef STM32
   uint16_t pin = 0;
 	#ifdef STM32F1
     pin = GPIO_ReadInputData(LIM_GPIO_Port);
 	#endif
-	#ifdef GRBL_STM32F4
+	#ifdef STM32F4
 		pin = GetLimitsState();
 	#endif
 
@@ -157,7 +157,7 @@ uint8_t limits_get_state()
 // your e-stop switch to the Arduino reset pin, since it is the most correct way to do this.
 
 
-#ifdef GRBL_STM32
+#ifdef STM32
 
 void HandleLimitIT(void)
 {
@@ -260,7 +260,7 @@ void limits_go_home(uint8_t cycle_mask)
   uint8_t idx;
   for (idx=0; idx<N_AXIS; idx++) {
     // Initialize step pin masks
-    #ifdef GRBL_STM32
+    #ifdef STM32
       step_pin[idx] = step_pin_mask[idx];
     #elif ATMEGA328P
       step_pin[idx] = get_step_pin_mask(idx);

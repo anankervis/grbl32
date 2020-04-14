@@ -42,8 +42,8 @@
     <ClCompile>
       <CPPLanguageStandard>
       </CPPLanguageStandard>
-      <AdditionalIncludeDirectories>../stm32;../grbl;Inc;Drivers\CMSIS\Include;Drivers\CMSIS\Device\ST\STM32F4xx\Include;Drivers\STM32F4xx_HAL_Driver\Inc;Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GRBL_STM32;GRBL_STM32F4;GRBL_STM32F46;GRBL_STM32F4_3;USE_FULL_LL_DRIVER;flash_layout;STM32F407xx;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../stm32;../grbl;f4;Drivers\CMSIS\Include;Drivers\CMSIS\Device\ST\STM32F4xx\Include;Drivers\STM32F4xx_HAL_Driver\Inc;Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GRBL_STM32F46;GRBL_STM32F4_3;USE_FULL_LL_DRIVER;flash_layout;STM32;STM32F4;STM32F407xx;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard />
     </ClCompile>
@@ -58,8 +58,8 @@
     <ClCompile>
       <CPPLanguageStandard>
       </CPPLanguageStandard>
-      <AdditionalIncludeDirectories>../stm32;../grbl;Inc;Drivers\CMSIS\Include;Drivers\CMSIS\Device\ST\STM32F4xx\Include;Drivers\STM32F4xx_HAL_Driver\Inc;Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GRBL_STM32;GRBL_STM32F4;GRBL_STM32F46;GRBL_STM32F4_3;USE_FULL_LL_DRIVER;flash_layout;STM32F407xx;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../stm32;../grbl;f4;Drivers\CMSIS\Include;Drivers\CMSIS\Device\ST\STM32F4xx\Include;Drivers\STM32F4xx_HAL_Driver\Inc;Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GRBL_STM32F46;GRBL_STM32F4_3;USE_FULL_LL_DRIVER;flash_layout;STM32;STM32F4;STM32F407xx;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard />
     </ClCompile>
@@ -94,19 +94,9 @@
     <ClCompile Include="..\stm32\inoutputs.c" />
     <ClCompile Include="..\stm32\lcd-i2c.c" />
     <ClCompile Include="..\stm32\stm32utilities.c" />
-    <ClCompile Include="Src\gpio.c" />
-    <ClCompile Include="Src\i2c.c" />
-    <ClCompile Include="Src\spi.c" />
-    <ClCompile Include="Src\system_stm32f4xx.c" />
-    <ClCompile Include="Src\tim.c" />
-    <ClCompile Include="Src\usart.c" />
-    <ClCompile Include="Src\stm32f4xx_it.c" />
-    <ClCompile Include="Src\stm32f4xx_hal_msp.c" />
-    <ClCompile Include="Src\main.c" />
-    <ClCompile Include="Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c" />
+    <ClCompile Include="Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c" />
+    <ClCompile Include="Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_gpio.c" />
     <ClCompile Include="Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c" />
     <ClCompile Include="Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_exti.c" />
     <ClCompile Include="Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c" />
@@ -127,8 +117,29 @@
     <ClCompile Include="Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.c" />
     <ClCompile Include="Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c" />
     <ClCompile Include="Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c_ex.c" />
+    <ClCompile Include="f4\gpio.c" />
+    <ClCompile Include="f4\i2c.c" />
+    <ClCompile Include="f4\main.c" />
+    <ClCompile Include="f4\spi.c" />
+    <ClCompile Include="f4\startup_stm32f407xx.c" />
+    <ClCompile Include="f4\stm32f4xx_hal_msp.c" />
+    <ClCompile Include="f4\stm32f4xx_it.c" />
+    <ClCompile Include="f4\syscalls.c" />
+    <ClCompile Include="f4\system_stm32f4xx.c" />
+    <ClCompile Include="f4\tim.c" />
+    <ClCompile Include="f4\usart.c" />
+    <ClInclude Include="Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h" />
+    <ClInclude Include="Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h" />
+    <ClInclude Include="f4\gpio.h" />
+    <ClInclude Include="f4\i2c.h" />
+    <ClInclude Include="f4\main.h" />
+    <ClInclude Include="f4\spi.h" />
+    <ClInclude Include="f4\stm32f4xx_hal_conf.h" />
+    <ClInclude Include="f4\stm32f4xx_it.h" />
+    <ClInclude Include="f4\stm32_assert.h" />
+    <ClInclude Include="f4\tim.h" />
+    <ClInclude Include="f4\usart.h" />
     <None Include="stm32.props" />
-    <ClCompile Include="$(BSP_ROOT)\STM32F4xxxx\StartupFiles\startup_stm32f407xx.c" />
     <ClInclude Include="..\grbl\config.h" />
     <ClInclude Include="..\grbl\coolant_control.h" />
     <ClInclude Include="..\grbl\cpu_map.h" />
@@ -179,18 +190,7 @@
     <ClInclude Include="Drivers\CMSIS\Include\mpu_armv7.h" />
     <ClInclude Include="Drivers\CMSIS\Include\mpu_armv8.h" />
     <ClInclude Include="Drivers\CMSIS\Include\tz_context.h" />
-    <ClInclude Include="Inc\gpio.h" />
-    <ClInclude Include="Inc\i2c.h" />
-    <ClInclude Include="Inc\spi.h" />
-    <ClInclude Include="Inc\tim.h" />
-    <ClInclude Include="Inc\usart.h" />
-    <ClInclude Include="Inc\stm32f4xx_it.h" />
-    <ClInclude Include="Inc\stm32_assert.h" />
-    <ClInclude Include="Inc\stm32f4xx_hal_conf.h" />
-    <ClInclude Include="Inc\main.h" />
     <ClInclude Include="Drivers\CMSIS\Include\core_cm4.h" />
-    <ClInclude Include="Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h" />
-    <ClInclude Include="Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h" />
     <ClInclude Include="Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h" />
     <ClInclude Include="Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h" />
     <ClInclude Include="Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h" />
@@ -214,7 +214,6 @@
     <ClInclude Include="Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_pwr.h" />
     <ClInclude Include="Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_gpio.h" />
     <ClInclude Include="Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_dma.h" />
-    <ClInclude Include="Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_dmamux.h" />
     <ClInclude Include="Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h" />
     <ClInclude Include="Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_tim.h" />
     <ClInclude Include="Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h" />

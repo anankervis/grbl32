@@ -1,5 +1,5 @@
 /*
- * TODO: move all GRBL_STM32 specific LL and HAL calls here
+ * TODO: move all STM32 specific LL and HAL calls here
  *
   stm32utilities.c
 
@@ -89,7 +89,7 @@ const PIN_MASK limit_pin_mask[N_AXIS] =
 #ifdef STM32F1
 char *pHello = "Hi G32F1\r\n";
 #endif
-#ifdef  GRBL_STM32F4
+#ifdef  STM32F4
 char *pHello = "Hi G32F4\r\n";
 #endif
 

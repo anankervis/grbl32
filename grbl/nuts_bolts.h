@@ -33,7 +33,7 @@
 #endif
 
 // Conversions
-#ifdef GRBL_STM32
+#ifdef STM32
 #define F_CPU SystemCoreClock
 #endif
 

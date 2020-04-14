@@ -41,7 +41,7 @@ void limits_go_home(uint8_t cycle_mask);
 // Check for soft limit violations
 void limits_soft_check(float *target);
 
-#ifdef GRBL_STM32
+#ifdef STM32
 	void HandleLimitIT(void);
 #endif
 

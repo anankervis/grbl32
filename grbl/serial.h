@@ -24,7 +24,7 @@
 #define serial_h
 
 
-#ifdef GRBL_STM32
+#ifdef STM32
 	#define RX_BUFFER_SIZE 254
 	#define TX_BUFFER_SIZE 128
 
@@ -68,7 +68,7 @@ uint8_t serial_get_rx_buffer_count();
 // NOTE: Not used except for debugging and ensuring no TX bottlenecks.
 uint8_t serial_get_tx_buffer_count();
 
-#ifdef GRBL_STM32
+#ifdef STM32
 void HandleUartIT(uint8_t data);
 #endif
 

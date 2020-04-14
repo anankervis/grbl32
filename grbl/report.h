@@ -21,7 +21,7 @@
 #ifndef report_h
 #define report_h
 
-#ifdef GRBL_STM32
+#ifdef STM32
 	#define STATUS_SETTING_STEP_PULSE_MIN_LIMIT	0.01f
 #elif ATMEGA328P
 	#define STATUS_SETTING_STEP_PULSE_MIN_LIMIT	3

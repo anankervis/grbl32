@@ -248,7 +248,7 @@ void mc_homing_cycle(uint8_t cycle_mask)
   plan_sync_position();
 
   // If hard limits feature enabled, re-enable hard limits pin change register after homing cycle.
-#ifdef GRBL_STM32
+#ifdef STM32
   LL_EXTI_ClearFlag_0_31(LIM_MASK);
   HAL_NVIC_ClearPendingIRQ(EXTI15_10_IRQn);
   HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);

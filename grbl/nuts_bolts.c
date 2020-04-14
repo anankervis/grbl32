@@ -108,7 +108,7 @@ uint8_t read_float(char *line, uint8_t *char_counter, float *float_ptr)
   return(true);
 }
 
-#ifdef GRBL_STM32
+#ifdef STM32
 void _delay_ms(uint32_t x)
 {
 /*

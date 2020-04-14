@@ -26,7 +26,7 @@
 
 // The number of linear motions that can be in the plan at any give time
 #ifndef BLOCK_BUFFER_SIZE
-	#ifdef GRBL_STM32
+	#ifdef STM32
 		#define BLOCK_BUFFER_SIZE 200
 	#endif
 	#ifdef ATMEGA328P

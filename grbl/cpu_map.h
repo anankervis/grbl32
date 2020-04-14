@@ -27,7 +27,7 @@
 #ifndef cpu_map_h
 #define cpu_map_h
 
-#ifdef GRBL_STM32
+#ifdef STM32
   #include "stm32_cpu_map.h"  //-- in /stm32
 #endif
 

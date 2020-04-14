@@ -27,7 +27,7 @@
 
 
 #ifndef SEGMENT_BUFFER_SIZE
-	#ifdef GRBL_STM32
+	#ifdef STM32
 		#define SEGMENT_BUFFER_SIZE 32
 	#endif
 	#ifdef ATMEGA328P
@@ -65,7 +65,7 @@ void st_update_plan_block_parameters();
 // Called by realtime status reporting if realtime rate reporting is enabled in config.h.
 float st_get_realtime_rate();
 
-#ifdef GRBL_STM32
+#ifdef STM32
 	void HandleStepSetIT(void);
 	void HandleStepResetIT(void);
 #endif
