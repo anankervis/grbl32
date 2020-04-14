@@ -1,3 +1,5 @@
+#pragma once
+
 /*
   probe.h - code pertaining to probing methods
   Part of Grbl
@@ -18,9 +20,6 @@
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef probe_h
-#define probe_h
-
 // Values that define the probing state machine.
 #define PROBE_OFF     0 // Probing disabled or not in use. (Must be zero.)
 #define PROBE_ACTIVE  1 // Actively watching the input pin.
@@ -39,5 +38,3 @@ uint8_t probe_get_state();
 // Monitors probe pin state and records the system position when detected. Called by the
 // stepper ISR per ISR tick.
 void probe_state_monitor();
-
-#endif

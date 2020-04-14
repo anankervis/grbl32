@@ -50,6 +50,7 @@ void _delay_us(uint32_t x);
 #include "nuts_bolts.h"
 #include "settings.h"
 #include "system.h"
+#include "defaults.h"
 #include "planner.h"
 #include "coolant_control.h"
 #include "eeprom.h"

@@ -177,12 +177,6 @@
     <ClInclude Include="..\grbl\coolant_control.h">
       <Filter>grbl</Filter>
     </ClInclude>
-    <ClInclude Include="..\grbl\cpu_map.h">
-      <Filter>grbl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\grbl\defaults.h">
-      <Filter>grbl</Filter>
-    </ClInclude>
     <ClInclude Include="..\grbl\eeprom.h">
       <Filter>grbl</Filter>
     </ClInclude>
@@ -244,9 +238,6 @@
       <Filter>stm32</Filter>
     </ClInclude>
     <ClInclude Include="..\stm32\stm32utilities.h">
-      <Filter>stm32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\stm32\stm32_cpu_map.h">
       <Filter>stm32</Filter>
     </ClInclude>
     <ClInclude Include="..\stm32\stm32_pin_out.h">
@@ -437,6 +428,9 @@
     </ClInclude>
     <ClInclude Include="Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h">
       <Filter>Drivers\STM32Cube HAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\grbl\defaults.h">
+      <Filter>grbl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

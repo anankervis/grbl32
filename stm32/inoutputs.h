@@ -1,3 +1,5 @@
+#pragma once
+
 /*
   inoutputs.h - Header file for shared definitions, variables, and functions
   Part of Grbl32
@@ -17,9 +19,6 @@
   You should have received a copy of the GNU General Public License
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#ifndef INOUTPUTS_H_
-#define INOUTPUTS_H_
 
 // Initialize the IO module
 void inoutputs_init();
@@ -42,6 +41,3 @@ void outputs_analog_action (uint8_t Echannel, float *pQval);
 //-- ALL Digital Inputs
 void inputs_digital_init();
 void wait_on_input_action (uint8_t bit_index, uint8_t Mode,float *pTimeoutS);
-
-
-#endif /* INOUTPUTS_H_ */

@@ -371,9 +371,6 @@ void report_build_info(char *line)
 #ifdef ENABLE_M7
 	serial_write('M');
 #endif
-#ifdef COREXY
-	serial_write('C');
-#endif
 #ifdef PARKING_ENABLE
 	serial_write('P');
 #endif
