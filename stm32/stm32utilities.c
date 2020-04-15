@@ -142,18 +142,12 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
 void uart_init()
 {
-#if 1
 	LL_USART_EnableIT_RXNE(USART1);
-#else
-	//HAL_UART_RegisterCallback(huart1, HAL_UART_RX_COMPLETE_CB_ID, uartHalCallback_rxComplete);
-	HAL_UART_Receive_IT(&huart1, Rx_data, sizeof(Rx_data));
-#endif
 
 	/*
 	 * Debug
 	 */
 	memset(pDbgStr, 0, 80);
-	//sprintf(pDbgStr,"\r\nClk:%ld\r\nTicks_us:%ld\r\nTicks_min:%.2f",SystemCoreClock,uTICKS_PER_MICROSECOND,fTICKS_PER_MINUTE);    //-- Clock check for Overclocking case
 	sprintf(pDbgStr, "\r\nSysClk:%ld\r\n", SystemCoreClock); //-- Clock check for Overclocking case
 	uart_sendstr(pDbgStr);
 }
@@ -166,41 +160,8 @@ void uart_sendstr(const char *pStr)
 
 void uart_sendch(uint8_t uC)
 {
-	//LL_USART_TransmitData8(USART1, uC);
-	//while (!(LL_USART_IsActiveFlag_TXE(USART1)))
-	//	; // sit till empty
-
-#if 1
 	while (!(LL_USART_IsActiveFlag_TXE(USART1))); // sit till empty
-
-//for (uint32_t i = 0; i < 20000; i++)
-//	__asm__ __volatile__("nop\n\t":::"memory");
-
 	LL_USART_TransmitData8(USART1, uC);
-#else
-	HAL_UART_Transmit(&huart1, &uC, sizeof(uC), HAL_MAX_DELAY);
-#endif
-
-//delay_ms(1);
-	//for (uint32_t i = 0; i < 200000; i++)
-	//	__asm__ __volatile__("nop\n\t":::"memory");
-
-	// CH340 notes
-	// https://www.avrfreaks.net/forum/problem-sending-data-usart0-atmega328p
-	// -tested at 9600 baud, TX'ing bytes as fast as the TXE flag would set - this caused corruption
-	// -tested with a small delay, OK
-	// -tested a different TTL to USB chip, OK
-	// -tested with CH340 connected directly to PC instead of USB hub, OK
-	// I tested plugging it directly into my PC:
-	// -with delay, OK both with hub and direct
-	// -without delay, hub results in CH340 getting into a bad state and needing to be reconnected (?)
-	// -without delay, direct results in missing bytes or (more likely) corrupted bits
-	// -seems like the CH340 doesn't get into a bad state when directly connected, but it does still drop or garble data
-	// https://github.com/gnea/grbl/issues/294
-	// -The suspected problem with the CH chip is the RX/TX buffers would overflow and lose data without notification. This would occur if the communication bandwidth was close to saturated.
-	// -someone else chimed in who probably spent 500+ hours trying to debug random corruption on the CH340G... it's a busted chip. Use something else.
-	// --corruption isn't impacted by baud rate
-	// --might be some sort of interference between TX and RX happening at the same time (but that doesn't appear to be my case)
 }
 
 //-- Pin based calls, need to use HAL since LL pins and HAL pins are incompatible for F1

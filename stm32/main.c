@@ -129,41 +129,13 @@ int main(void)
 	stepper_init();   // Configure stepper pins and interrupt timers
 	system_init();    // Configure pinout pins and pin-change interrupt
 
+#if 0 // benchmark serial communication for throughput and errors - use with term_bench project
 uint32_t debugCounter = 0;
 while (true) {
-// this doesn't always work
-//printString("0123456789ABCDEF\r\n");
-//delay_ms(100);
-
-// this always works?
-//uart_sendch(debugCounter >> 24);
-//uart_sendch(debugCounter >> 16);
-//uart_sendch(debugCounter >> 8);
-//uart_sendch(debugCounter >> 0);
-//debugCounter++;
-//delay_ms(100);
-
-// this seems to work
-//	uart_sendch('0' + (debugCounter >> 24));
-//	uart_sendch('0' + (debugCounter >> 16));
-//	uart_sendch('0' + (debugCounter >> 8));
-//	uart_sendch('0' + (debugCounter >> 0));
-//	printString("\r\n");
-//	debugCounter++;
-
-//	printString("\r\nGrbl " GRBL_VERSION " ['$' for help]\r\n");
-//	printString("[MSG:");
-//	printString("'$H'|'$X' to unlock");
-//	serial_write(']');
-//	printString("\r\n");
-//	delay_ms(50);
-
-uart_sendch(debugCounter);
-debugCounter++;
-
-// It seems like sometimes either the serial -> USB chip, or the virtual COM driver on my PC,
-// gets into a bad state and I receive nothing. Disabling/enabling in Device Manager is a workaround.
+    uart_sendch(debugCounter);
+    debugCounter++;
 }
+#endif
 
 	memset(sys_position, 0, sizeof(sys_position));   // Clear machine position.
 
