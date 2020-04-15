@@ -130,6 +130,10 @@ int main(void)
 	system_init();    // Configure pinout pins and pin-change interrupt
 
 #if 0 // benchmark serial communication for throughput and errors - use with term_bench project
+// 115200 - stable, including mode switches from monitors
+// 230400, 460800, 921600 - seems stable, but monitor mode switch can stall the OS and app long enough that the RX buffer overruns
+// -in practice, this is unlikely to be a problem, as the uC won't be sending data full-blast to the PC
+// In all cases, there's an occasional CE_FRAME error on the PC side at initial connection...
 uint32_t debugCounter = 0;
 while (true) {
     uart_sendch(debugCounter);
