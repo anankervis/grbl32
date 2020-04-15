@@ -1,0 +1,4 @@
+For STM32CubeMX to update files in the correct location, add symlinks like so:
+Drivers -> stm32/Drivers/
+Inc -> stm32/
+Src -> stm32/
