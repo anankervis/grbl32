@@ -73,12 +73,12 @@ uint16_t pinmask;
   */
 void NMI_Handler(void)
 {
-	/* USER CODE BEGIN NonMaskableInt_IRQn 0 */
+  /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
 
-	/* USER CODE END NonMaskableInt_IRQn 0 */
-	/* USER CODE BEGIN NonMaskableInt_IRQn 1 */
+  /* USER CODE END NonMaskableInt_IRQn 0 */
+  /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
 
-	/* USER CODE END NonMaskableInt_IRQn 1 */
+  /* USER CODE END NonMaskableInt_IRQn 1 */
 }
 
 /**
@@ -86,14 +86,14 @@ void NMI_Handler(void)
   */
 void HardFault_Handler(void)
 {
-	/* USER CODE BEGIN HardFault_IRQn 0 */
+  /* USER CODE BEGIN HardFault_IRQn 0 */
 
-	/* USER CODE END HardFault_IRQn 0 */
-	while (1)
-	{
-		/* USER CODE BEGIN W1_HardFault_IRQn 0 */
-		/* USER CODE END W1_HardFault_IRQn 0 */
-	}
+  /* USER CODE END HardFault_IRQn 0 */
+  while (1)
+  {
+    /* USER CODE BEGIN W1_HardFault_IRQn 0 */
+    /* USER CODE END W1_HardFault_IRQn 0 */
+  }
 }
 
 /**
@@ -101,14 +101,14 @@ void HardFault_Handler(void)
   */
 void MemManage_Handler(void)
 {
-	/* USER CODE BEGIN MemoryManagement_IRQn 0 */
+  /* USER CODE BEGIN MemoryManagement_IRQn 0 */
 
-	/* USER CODE END MemoryManagement_IRQn 0 */
-	while (1)
-	{
-		/* USER CODE BEGIN W1_MemoryManagement_IRQn 0 */
-		/* USER CODE END W1_MemoryManagement_IRQn 0 */
-	}
+  /* USER CODE END MemoryManagement_IRQn 0 */
+  while (1)
+  {
+    /* USER CODE BEGIN W1_MemoryManagement_IRQn 0 */
+    /* USER CODE END W1_MemoryManagement_IRQn 0 */
+  }
 }
 
 /**
@@ -116,14 +116,14 @@ void MemManage_Handler(void)
   */
 void BusFault_Handler(void)
 {
-	/* USER CODE BEGIN BusFault_IRQn 0 */
+  /* USER CODE BEGIN BusFault_IRQn 0 */
 
-	/* USER CODE END BusFault_IRQn 0 */
-	while (1)
-	{
-		/* USER CODE BEGIN W1_BusFault_IRQn 0 */
-		/* USER CODE END W1_BusFault_IRQn 0 */
-	}
+  /* USER CODE END BusFault_IRQn 0 */
+  while (1)
+  {
+    /* USER CODE BEGIN W1_BusFault_IRQn 0 */
+    /* USER CODE END W1_BusFault_IRQn 0 */
+  }
 }
 
 /**
@@ -131,14 +131,14 @@ void BusFault_Handler(void)
   */
 void UsageFault_Handler(void)
 {
-	/* USER CODE BEGIN UsageFault_IRQn 0 */
+  /* USER CODE BEGIN UsageFault_IRQn 0 */
 
-	/* USER CODE END UsageFault_IRQn 0 */
-	while (1)
-	{
-		/* USER CODE BEGIN W1_UsageFault_IRQn 0 */
-		/* USER CODE END W1_UsageFault_IRQn 0 */
-	}
+  /* USER CODE END UsageFault_IRQn 0 */
+  while (1)
+  {
+    /* USER CODE BEGIN W1_UsageFault_IRQn 0 */
+    /* USER CODE END W1_UsageFault_IRQn 0 */
+  }
 }
 
 /**
@@ -146,12 +146,12 @@ void UsageFault_Handler(void)
   */
 void SVC_Handler(void)
 {
-	/* USER CODE BEGIN SVCall_IRQn 0 */
+  /* USER CODE BEGIN SVCall_IRQn 0 */
 
-	/* USER CODE END SVCall_IRQn 0 */
-	/* USER CODE BEGIN SVCall_IRQn 1 */
+  /* USER CODE END SVCall_IRQn 0 */
+  /* USER CODE BEGIN SVCall_IRQn 1 */
 
-	/* USER CODE END SVCall_IRQn 1 */
+  /* USER CODE END SVCall_IRQn 1 */
 }
 
 /**
@@ -159,12 +159,12 @@ void SVC_Handler(void)
   */
 void DebugMon_Handler(void)
 {
-	/* USER CODE BEGIN DebugMonitor_IRQn 0 */
+  /* USER CODE BEGIN DebugMonitor_IRQn 0 */
 
-	/* USER CODE END DebugMonitor_IRQn 0 */
-	/* USER CODE BEGIN DebugMonitor_IRQn 1 */
+  /* USER CODE END DebugMonitor_IRQn 0 */
+  /* USER CODE BEGIN DebugMonitor_IRQn 1 */
 
-	/* USER CODE END DebugMonitor_IRQn 1 */
+  /* USER CODE END DebugMonitor_IRQn 1 */
 }
 
 /**
@@ -172,12 +172,12 @@ void DebugMon_Handler(void)
   */
 void PendSV_Handler(void)
 {
-	/* USER CODE BEGIN PendSV_IRQn 0 */
+  /* USER CODE BEGIN PendSV_IRQn 0 */
 
-	/* USER CODE END PendSV_IRQn 0 */
-	/* USER CODE BEGIN PendSV_IRQn 1 */
+  /* USER CODE END PendSV_IRQn 0 */
+  /* USER CODE BEGIN PendSV_IRQn 1 */
 
-	/* USER CODE END PendSV_IRQn 1 */
+  /* USER CODE END PendSV_IRQn 1 */
 }
 
 /**
@@ -185,13 +185,13 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
-	/* USER CODE BEGIN SysTick_IRQn 0 */
+  /* USER CODE BEGIN SysTick_IRQn 0 */
 
-	/* USER CODE END SysTick_IRQn 0 */
-	HAL_IncTick();
-	/* USER CODE BEGIN SysTick_IRQn 1 */
+  /* USER CODE END SysTick_IRQn 0 */
+  HAL_IncTick();
+  /* USER CODE BEGIN SysTick_IRQn 1 */
 
-	/* USER CODE END SysTick_IRQn 1 */
+  /* USER CODE END SysTick_IRQn 1 */
 }
 
 /******************************************************************************/
@@ -206,14 +206,14 @@ void SysTick_Handler(void)
   */
 void EXTI0_IRQHandler(void)
 {
-	/* USER CODE BEGIN EXTI0_IRQn 0 */
+  /* USER CODE BEGIN EXTI0_IRQn 0 */
 
-	/* USER CODE END EXTI0_IRQn 0 */
-	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
-	/* USER CODE BEGIN EXTI0_IRQn 1 */
+  /* USER CODE END EXTI0_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
+  /* USER CODE BEGIN EXTI0_IRQn 1 */
 	HandleControlIT(GPIO_PIN_0);
 	NVIC_ClearPendingIRQ(EXTI0_IRQn);
-	/* USER CODE END EXTI0_IRQn 1 */
+  /* USER CODE END EXTI0_IRQn 1 */
 }
 
 /**
@@ -221,14 +221,14 @@ void EXTI0_IRQHandler(void)
   */
 void EXTI1_IRQHandler(void)
 {
-	/* USER CODE BEGIN EXTI1_IRQn 0 */
+  /* USER CODE BEGIN EXTI1_IRQn 0 */
 
-	/* USER CODE END EXTI1_IRQn 0 */
-	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1);
-	/* USER CODE BEGIN EXTI1_IRQn 1 */
+  /* USER CODE END EXTI1_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1);
+  /* USER CODE BEGIN EXTI1_IRQn 1 */
 	HandleControlIT(GPIO_PIN_1);
 	NVIC_ClearPendingIRQ(EXTI1_IRQn);
-	/* USER CODE END EXTI1_IRQn 1 */
+  /* USER CODE END EXTI1_IRQn 1 */
 }
 
 /**
@@ -236,14 +236,14 @@ void EXTI1_IRQHandler(void)
   */
 void EXTI2_IRQHandler(void)
 {
-	/* USER CODE BEGIN EXTI2_IRQn 0 */
+  /* USER CODE BEGIN EXTI2_IRQn 0 */
 
-	/* USER CODE END EXTI2_IRQn 0 */
-	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_2);
-	/* USER CODE BEGIN EXTI2_IRQn 1 */
+  /* USER CODE END EXTI2_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_2);
+  /* USER CODE BEGIN EXTI2_IRQn 1 */
 	HandleControlIT(GPIO_PIN_2);
 	NVIC_ClearPendingIRQ(EXTI2_IRQn);
-	/* USER CODE END EXTI2_IRQn 1 */
+  /* USER CODE END EXTI2_IRQn 1 */
 }
 
 /**
@@ -251,14 +251,14 @@ void EXTI2_IRQHandler(void)
   */
 void EXTI3_IRQHandler(void)
 {
-	/* USER CODE BEGIN EXTI3_IRQn 0 */
+  /* USER CODE BEGIN EXTI3_IRQn 0 */
 
-	/* USER CODE END EXTI3_IRQn 0 */
-	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_3);
-	/* USER CODE BEGIN EXTI3_IRQn 1 */
+  /* USER CODE END EXTI3_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_3);
+  /* USER CODE BEGIN EXTI3_IRQn 1 */
 	HandleControlIT(GPIO_PIN_3);
 	NVIC_ClearPendingIRQ(EXTI3_IRQn);
-	/* USER CODE END EXTI3_IRQn 1 */
+  /* USER CODE END EXTI3_IRQn 1 */
 }
 
 /**
@@ -266,10 +266,10 @@ void EXTI3_IRQHandler(void)
   */
 void USART1_IRQHandler(void)
 {
-	/* USER CODE BEGIN USART1_IRQn 0 */
+  /* USER CODE BEGIN USART1_IRQn 0 */
 
-	/* USER CODE END USART1_IRQn 0 */
-	/* USER CODE BEGIN USART1_IRQn 1 */
+  /* USER CODE END USART1_IRQn 0 */
+  /* USER CODE BEGIN USART1_IRQn 1 */
 #if 1
 	uint8_t data;
 	if (LL_USART_IsEnabledIT_RXNE(USART1))
@@ -279,7 +279,7 @@ void USART1_IRQHandler(void)
 		LL_USART_ClearFlag_RXNE(USART1);
 	}
 #endif
-	/* USER CODE END USART1_IRQn 1 */
+  /* USER CODE END USART1_IRQn 1 */
 }
 
 /**
@@ -287,14 +287,14 @@ void USART1_IRQHandler(void)
   */
 void EXTI15_10_IRQHandler(void)
 {
-	/* USER CODE BEGIN EXTI15_10_IRQn 0 */
+  /* USER CODE BEGIN EXTI15_10_IRQn 0 */
 
-	/* USER CODE END EXTI15_10_IRQn 0 */
-	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_10);
-	/* USER CODE BEGIN EXTI15_10_IRQn 1 */
+  /* USER CODE END EXTI15_10_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_10);
+  /* USER CODE BEGIN EXTI15_10_IRQn 1 */
 	NVIC_ClearPendingIRQ(EXTI15_10_IRQn);
 	HandleLimitIT();
-	/* USER CODE END EXTI15_10_IRQn 1 */
+  /* USER CODE END EXTI15_10_IRQn 1 */
 }
 
 /**
@@ -302,17 +302,17 @@ void EXTI15_10_IRQHandler(void)
   */
 void TIM5_IRQHandler(void)
 {
-	/* USER CODE BEGIN TIM5_IRQn 0 */
+  /* USER CODE BEGIN TIM5_IRQn 0 */
 
-	/* USER CODE END TIM5_IRQn 0 */
-	/* USER CODE BEGIN TIM5_IRQn 1 */
+  /* USER CODE END TIM5_IRQn 0 */
+  /* USER CODE BEGIN TIM5_IRQn 1 */
 	if (LL_TIM_IsActiveFlag_UPDATE(TIM5))
 	{
 		LL_TIM_ClearFlag_UPDATE(TIM5);
 		LL_TIM_SetCounter(TIM5, 0);
 		HandleStepSetIT();
 	}
-	/* USER CODE END TIM5_IRQn 1 */
+  /* USER CODE END TIM5_IRQn 1 */
 }
 
 /**
@@ -320,10 +320,10 @@ void TIM5_IRQHandler(void)
   */
 void TIM7_IRQHandler(void)
 {
-	/* USER CODE BEGIN TIM7_IRQn 0 */
+  /* USER CODE BEGIN TIM7_IRQn 0 */
 
-	/* USER CODE END TIM7_IRQn 0 */
-	/* USER CODE BEGIN TIM7_IRQn 1 */
+  /* USER CODE END TIM7_IRQn 0 */
+  /* USER CODE BEGIN TIM7_IRQn 1 */
 	if (LL_TIM_IsActiveFlag_UPDATE(TIM7))
 	{
 		LL_TIM_ClearFlag_UPDATE(TIM7);
@@ -331,7 +331,7 @@ void TIM7_IRQHandler(void)
 		NVIC_DisableIRQ(TIM7_IRQn);
 		HandleStepResetIT();
 	}
-	/* USER CODE END TIM7_IRQn 1 */
+  /* USER CODE END TIM7_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

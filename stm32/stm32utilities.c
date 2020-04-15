@@ -173,8 +173,8 @@ void uart_sendch(uint8_t uC)
 #if 1
 	while (!(LL_USART_IsActiveFlag_TXE(USART1))); // sit till empty
 
-for (uint32_t i = 0; i < 20000; i++)
-	__asm__ __volatile__("nop\n\t":::"memory");
+//for (uint32_t i = 0; i < 20000; i++)
+//	__asm__ __volatile__("nop\n\t":::"memory");
 
 	LL_USART_TransmitData8(USART1, uC);
 #else
