@@ -115,6 +115,11 @@
 // define to force Grbl to always set the machine origin at the homed location despite switch orientation.
 //#define HOMING_FORCE_SET_ORIGIN // Uncomment to enable.
 
+// Enables homing via the servo drive's hard stop homing mode.
+// Grbl sends commands to move toward the hard stop. The servo drive stops upon detecting the hard stop.
+// After homing, it is assumed that the servo drive backs away from the hard stop by the homing pulloff distance ($27, DEFAULT_HOMING_PULLOFF).
+#define HOMING_EXTERNAL
+
 // Number of blocks Grbl executes upon startup. These blocks are stored in EEPROM, where the size
 // and addresses are defined in settings.h. With the current settings, up to 2 startup blocks may
 // be stored and executed in order. These startup blocks would typically be used to set the g-code

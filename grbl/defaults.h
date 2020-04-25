@@ -43,15 +43,15 @@
 #define DEFAULT_B_MAX_RATE 8000.0f // mm/min	$114
 #define DEFAULT_C_MAX_RATE 8000.0f // mm/min	$115
 
-#define DEFAULT_X_ACCELERATION (2000.0f*60*60) // mm/sec^2 -> mm/min^2  $120
-#define DEFAULT_Y_ACCELERATION (2000.0f*60*60) // mm/sec^2 -> mm/min^2  $121
-#define DEFAULT_Z_ACCELERATION (2000.0f*60*60) // mm/sec^2 -> mm/min^2  $122
-#define DEFAULT_A_ACCELERATION (2000.0f*60*60) // mm/sec^2 -> mm/min^2  $123
-#define DEFAULT_B_ACCELERATION (2000.0f*60*60) // mm/sec^2 -> mm/min^2  $124
-#define DEFAULT_C_ACCELERATION (2000.0f*60*60) // mm/sec^2 -> mm/min^2  $125
+#define DEFAULT_X_ACCELERATION (2000.0f * 60 * 60) // mm/sec^2 -> mm/min^2  $120
+#define DEFAULT_Y_ACCELERATION (2000.0f * 60 * 60) // mm/sec^2 -> mm/min^2  $121
+#define DEFAULT_Z_ACCELERATION (2000.0f * 60 * 60) // mm/sec^2 -> mm/min^2  $122
+#define DEFAULT_A_ACCELERATION (2000.0f * 60 * 60) // mm/sec^2 -> mm/min^2  $123
+#define DEFAULT_B_ACCELERATION (2000.0f * 60 * 60) // mm/sec^2 -> mm/min^2  $124
+#define DEFAULT_C_ACCELERATION (2000.0f * 60 * 60) // mm/sec^2 -> mm/min^2  $125
 
-#define DEFAULT_X_MAX_TRAVEL 800.0f // mm NOTE: Must be a positive value.	$130
-#define DEFAULT_Y_MAX_TRAVEL 500.0f // mm NOTE: Must be a positive value.	$131
+#define DEFAULT_X_MAX_TRAVEL 600.0f // mm NOTE: Must be a positive value.	$130
+#define DEFAULT_Y_MAX_TRAVEL 200.0f // mm NOTE: Must be a positive value.	$131
 #define DEFAULT_Z_MAX_TRAVEL 150.0f // mm NOTE: Must be a positive value.	$132
 #define DEFAULT_A_MAX_TRAVEL 150.0f // mm NOTE: Must be a positive value.	$133
 #define DEFAULT_B_MAX_TRAVEL 150.0f // mm NOTE: Must be a positive value.	$134
@@ -60,8 +60,8 @@
 #define DEFAULT_STEP_PULSE_MICROSECONDS 0.5		//usec		$0
 #define DEFAULT_STEPPER_IDLE_LOCK_TIME 1 // msec (0-254, 255 keeps steppers enabled)	$1
 #define DEFAULT_STEPPING_INVERT_MASK 0		//					$2
-#define DEFAULT_DIRECTION_INVERT_MASK 0		//					$3
-#define DEFAULT_INVERT_ST_ENABLE 0 // false						$4
+#define DEFAULT_DIRECTION_INVERT_MASK (1 << X_AXIS)		//					$3
+#define DEFAULT_INVERT_ST_ENABLE 1 // false						$4
 #define DEFAULT_INVERT_LIMIT_PINS 0 // false					$5
 #define DEFAULT_INVERT_PROBE_PIN 0 // false						$6
 
@@ -70,12 +70,12 @@
 #define DEFAULT_ARC_TOLERANCE 0.002f // mm						$12
 #define DEFAULT_REPORT_INCHES 0 // false							$13
 
-#define DEFAULT_SOFT_LIMIT_ENABLE 0 // false					$20
+#define DEFAULT_SOFT_LIMIT_ENABLE 1 // true					$20
 #define DEFAULT_HARD_LIMIT_ENABLE 0  // true					$21
-#define DEFAULT_HOMING_ENABLE 1  // false							$22
-#define DEFAULT_HOMING_DIR_MASK 0 // move positive dir $23
-#define DEFAULT_HOMING_FEED_RATE 100.0f // mm/min			$24
-#define DEFAULT_HOMING_SEEK_RATE 1000.0f // mm/min			$25
+#define DEFAULT_HOMING_ENABLE 1  // true							$22
+#define DEFAULT_HOMING_DIR_MASK (1 << X_AXIS) // $23
+#define DEFAULT_HOMING_FEED_RATE 2000.0f // mm/min			$24
+#define DEFAULT_HOMING_SEEK_RATE 2000.0f // mm/min			$25
 #define DEFAULT_HOMING_DEBOUNCE_DELAY 250 // msec (0-65k)	$26
 #define DEFAULT_HOMING_PULLOFF 5.0f // mm							$27
 

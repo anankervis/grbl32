@@ -34,14 +34,20 @@ void mc_line(float *target, plan_line_data_t *pl_data)
 {
 	// If enabled, check for soft limit violations. Placed here all line motions are picked up
 	// from everywhere in Grbl.
-	if(bit_istrue(settings.flags, BITFLAG_SOFT_LIMIT_ENABLE))
+	if (bit_istrue(settings.flags, BITFLAG_SOFT_LIMIT_ENABLE))
 	{
 		// NOTE: Block jog state. Jogging is a special case and soft limits are handled independently.
-		if(sys.state != STATE_JOG) { limits_soft_check(target); }
+		if (sys.state != STATE_JOG)
+		{
+			limits_soft_check(target);
+		}
 	}
 
 	// If in check gcode mode, prevent motion by blocking planner. Soft limits still work.
-	if(sys.state == STATE_CHECK_MODE) { return; }
+	if (sys.state == STATE_CHECK_MODE)
+	{
+		return;
+	}
 
 	// NOTE: Backlash compensation may be installed here. It will need direction info to track when
 	// to insert a backlash line motion(s) before the intended line motion and will require its own
@@ -62,19 +68,28 @@ void mc_line(float *target, plan_line_data_t *pl_data)
 	do
 	{
 		protocol_execute_realtime();  // Check for any run-time commands
-		if(sys.abort) { return; } // Bail, if system abort.
-		if(plan_check_full_buffer()) { protocol_auto_cycle_start(); } // Auto-cycle start when buffer is full.
-		else { break; }
-	} while (1) ;
+		if (sys.abort) // Bail, if system abort.
+		{
+			return;
+		}
+		if (plan_check_full_buffer()) // Auto-cycle start when buffer is full.
+		{
+			protocol_auto_cycle_start();
+		}
+		else
+		{
+			break;
+		}
+	} while (1);
 
 	// Plan and queue motion into planner buffer
-	if(plan_buffer_line(target, pl_data) == PLAN_EMPTY_BLOCK)
+	if (plan_buffer_line(target, pl_data) == PLAN_EMPTY_BLOCK)
 	{
 		if (bit_istrue(settings.flags, BITFLAG_LASER_MODE))
 		{
 			// Correctly set spindle state, if there is a coincident position passed. Forces a buffer
 			// sync while in M3 laser mode only.
-			if(pl_data->condition & PL_COND_FLAG_SPINDLE_CW)
+			if (pl_data->condition & PL_COND_FLAG_SPINDLE_CW)
 			{
 				spindle_sync(PL_COND_FLAG_SPINDLE_CW, pl_data->spindle_speed);
 			}
@@ -246,22 +261,28 @@ void mc_homing_cycle(uint8_t cycle_mask)
 	// Perform homing routine. NOTE: Special motion case. Only system reset works.
   
 #ifdef HOMING_SINGLE_AXIS_COMMANDS
-	  if(cycle_mask) { limits_go_home(cycle_mask); } // Perform homing cycle based on mask.
-	  else
+	if (cycle_mask) // Perform homing cycle based on mask.
+	{
+		limits_go_home(cycle_mask);
+	}
+	else
 #endif
 	{
 		// Search to engage all axes limit switches at faster homing seek rate.
 		limits_go_home(HOMING_CYCLE_0);   // Homing cycle 0
 #ifdef HOMING_CYCLE_1
-		  limits_go_home(HOMING_CYCLE_1);   // Homing cycle 1
+		limits_go_home(HOMING_CYCLE_1);   // Homing cycle 1
 #endif
 #ifdef HOMING_CYCLE_2
-		  limits_go_home(HOMING_CYCLE_2);   // Homing cycle 2
+		limits_go_home(HOMING_CYCLE_2);   // Homing cycle 2
 #endif
 	}
 
 	protocol_execute_realtime();  // Check for reset and set system abort.
-	if(sys.abort) { return; } // Did not complete. Alarm state set by mc_alarm.
+	if (sys.abort) // Did not complete. Alarm state set by mc_alarm.
+	{
+		return;
+	}
 
 	// Homing cycle complete! Setup system for normal operation.
 	// -------------------------------------------------------------------------------------

@@ -187,7 +187,7 @@ uint8_t system_execute_line(char *line)
 		case '#' : // Print Grbl NGC parameters
 			if (line[2] != 0)
 			{
-				return (STATUS_INVALID_STATEMENT);
+				return STATUS_INVALID_STATEMENT;
 			}
 			else
 			{
@@ -196,10 +196,10 @@ uint8_t system_execute_line(char *line)
 			break;
 		case 'H' : // Perform homing cycle [IDLE/ALARM]
 			if (bit_isfalse(settings.flags, BITFLAG_HOMING_ENABLE))
-				return (STATUS_SETTING_DISABLED);
+				return STATUS_SETTING_DISABLED;
 			
 			if (system_check_safety_door_ajar())
-				return (STATUS_CHECK_DOOR); // Block if safety door is ajar.
+				return STATUS_CHECK_DOOR; // Block if safety door is ajar.
 			
 			sys.state = STATE_HOMING;  // Set system state variable
 			if (line[2] == 0)
@@ -223,13 +223,13 @@ uint8_t system_execute_line(char *line)
 #if AXIS_COUNT >= 6
 				case 'C': mc_homing_cycle(HOMING_CYCLE_C); break;
 #endif
-				default: return (STATUS_INVALID_STATEMENT);
+				default: return STATUS_INVALID_STATEMENT;
 				}
 #endif
 			}
 			else
 			{
-				return (STATUS_INVALID_STATEMENT);
+				return STATUS_INVALID_STATEMENT;
 			}
 			
 			if (!sys.abort)
@@ -243,7 +243,7 @@ uint8_t system_execute_line(char *line)
 			break;
 		case 'S': // Puts Grbl to sleep [IDLE/ALARM]
 			if ((line[2] != 'L') || (line[3] != 'P') || (line[4] != 0))
-				return (STATUS_INVALID_STATEMENT);
+				return STATUS_INVALID_STATEMENT;
 			
 			system_set_exec_state_flag(EXEC_SLEEP); // Set to execute sleep mode immediately
 			break;
@@ -258,7 +258,7 @@ uint8_t system_execute_line(char *line)
 			{
 				 // Store startup line [IDLE/ALARM]
 				if(line[char_counter++] != '=')
-					return (STATUS_INVALID_STATEMENT);
+					return STATUS_INVALID_STATEMENT;
 				helper_var = char_counter;  // Set helper variable as counter to start of user info line.
 				do
 				{
@@ -270,7 +270,7 @@ uint8_t system_execute_line(char *line)
 			break;
 		case 'R' : // Restore defaults [IDLE/ALARM]
 			if ((line[2] != 'S') || (line[3] != 'T') || (line[4] != '=') || (line[6] != 0))
-				return (STATUS_INVALID_STATEMENT);
+				return STATUS_INVALID_STATEMENT;
 			
 			switch (line[5])
 			{
