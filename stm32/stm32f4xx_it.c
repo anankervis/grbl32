@@ -277,7 +277,7 @@ void USART1_IRQHandler(void)
 		{
 			data = LL_USART_ReceiveData8(USART1);
 			HandleUartIT(data);
-			LL_USART_ClearFlag_RXNE(USART1);
+			//LL_USART_ClearFlag_RXNE(USART1);
 		}
 	}
   /* USER CODE END USART1_IRQn 1 */
