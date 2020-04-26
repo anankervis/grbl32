@@ -133,27 +133,20 @@ uint8_t read_float(char *line, uint8_t *char_counter, float *float_ptr)
 	return(true);
 }
 
-void _delay_ms(uint32_t x)
+void delay_ms1()
 {
-	/*
-	  uint32_t temp;
-	  SysTick->LOAD = SystemCoreClock / 8000;                     // Loading time
+	uint32_t loopCount = SystemCoreClock / (1000 * 3); // 3 cycles per loop iteration?
 
-	  SysTick->VAL = 0x00;                                            // Empty the counter
-	  SysTick->CTRL = 0x01;                                           // Start from bottom
-	  do
-	  {
-	    temp = SysTick->CTRL;
-	  } while ( (temp & 0x01) && !(temp&(1 << 16)) );                             // Wait time arrive
-	  SysTick->CTRL = 0x00;                                            // Close the counter
-	  SysTick->VAL = 0X00;                                            // Empty the counter
-	  */
-	//HAL_Delay(x);
-
-	// TODO(AN): uh...? this isn't one millisecond?
-	uint32_t mililoop = SystemCoreClock / 1000;
-	for (uint32_t i = 0; i < mililoop; i++)
+	while (loopCount--)
 		__asm__ __volatile__("nop\n\t" ::: "memory");
+}
+
+void delay_ms(uint16_t ms)
+{
+	while (ms--)
+	{
+		delay_ms1();
+	}
 }
 
 // Non-blocking delay function used for general operation and suspend features.
@@ -180,46 +173,6 @@ void delay_sec(float seconds, uint8_t mode)
 		
 		//_delay_ms(DWELL_TIME_STEP); // Delay DWELL_TIME_STEP increment
 		HAL_Delay(DWELL_TIME_STEP);
-	}
-}
-
-// Delays variable defined milliseconds. Compiler compatibility fix for _delay_ms(),
-// which only accepts constants in future compiler releases.
-void delay_ms(uint16_t ms)
-{
-	while (ms--)
-	{
-		_delay_ms(1);
-	}
-}
-
-// Delays variable defined microseconds. Compiler compatibility fix for _delay_us(),
-// which only accepts constants in future compiler releases. Written to perform more
-// efficiently with larger delays, as the counter adds parasitic time in each iteration.
-void delay_us(uint32_t us)
-{
-	while (us)
-	{
-		if (us < 10)
-		{
-			_delay_us(1);
-			us--;
-		}
-		else if (us < 100)
-		{
-			_delay_us(10);
-			us -= 10;
-		}
-		else if (us < 1000)
-		{
-			_delay_us(100);
-			us -= 100;
-		}
-		else
-		{
-			_delay_ms(1);
-			us -= 1000;
-		}
 	}
 }
 

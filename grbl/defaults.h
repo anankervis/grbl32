@@ -50,15 +50,15 @@
 #define DEFAULT_B_ACCELERATION (2000.0f * 60 * 60) // mm/sec^2 -> mm/min^2  $124
 #define DEFAULT_C_ACCELERATION (2000.0f * 60 * 60) // mm/sec^2 -> mm/min^2  $125
 
-#define DEFAULT_X_MAX_TRAVEL 600.0f // mm NOTE: Must be a positive value.	$130
-#define DEFAULT_Y_MAX_TRAVEL 200.0f // mm NOTE: Must be a positive value.	$131
+#define DEFAULT_X_MAX_TRAVEL 760.0f // mm NOTE: Must be a positive value.	$130
+#define DEFAULT_Y_MAX_TRAVEL 230.0f // mm NOTE: Must be a positive value.	$131
 #define DEFAULT_Z_MAX_TRAVEL 150.0f // mm NOTE: Must be a positive value.	$132
 #define DEFAULT_A_MAX_TRAVEL 150.0f // mm NOTE: Must be a positive value.	$133
 #define DEFAULT_B_MAX_TRAVEL 150.0f // mm NOTE: Must be a positive value.	$134
 #define DEFAULT_C_MAX_TRAVEL 150.0f // mm NOTE: Must be a positive value.	$135
 
 #define DEFAULT_STEP_PULSE_MICROSECONDS 0.5		//usec		$0
-#define DEFAULT_STEPPER_IDLE_LOCK_TIME 1 // msec (0-254, 255 keeps steppers enabled)	$1
+#define DEFAULT_STEPPER_IDLE_LOCK_TIME 255 // msec (0-254, 255 keeps steppers enabled)	$1
 #define DEFAULT_STEPPING_INVERT_MASK 0		//					$2
 #define DEFAULT_DIRECTION_INVERT_MASK (1 << X_AXIS)		//					$3
 #define DEFAULT_INVERT_ST_ENABLE 1 // false						$4

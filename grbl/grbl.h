@@ -35,8 +35,6 @@
 #include "inoutputs.h"
 #define PSTR(x) (char*)(x)
 #define pgm_read_byte_near(x) *(x)
-void _delay_ms(uint32_t x);
-void _delay_us(uint32_t x);
 #define printPgmString printString
 
 #include <inttypes.h>
