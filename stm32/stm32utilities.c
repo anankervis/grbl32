@@ -160,7 +160,8 @@ void uart_sendstr(const char *pStr)
 
 void uart_sendch(uint8_t uC)
 {
-	while (!(LL_USART_IsActiveFlag_TXE(USART1))); // sit till empty
+	while (!LL_USART_IsActiveFlag_TXE(USART1)); // sit till empty
+	LL_USART_ClearFlag_TC(USART1);
 	LL_USART_TransmitData8(USART1, uC);
 }
 
