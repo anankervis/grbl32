@@ -222,7 +222,7 @@
 // allowable override values and the coarse and fine increments per command received. Please
 // note the allowable values in the descriptions following each define.
 #define DEFAULT_FEED_OVERRIDE           100 // 100%. Don't change this value.
-#define MAX_FEED_RATE_OVERRIDE          250 // Percent of programmed feed rate (100-255). Usually 120% or 200%
+#define MAX_FEED_RATE_OVERRIDE          240 // Percent of programmed feed rate (100-255). Usually 120% or 200%
 #define MIN_FEED_RATE_OVERRIDE           10 // Percent of programmed feed rate (1-100). Usually 50% or 1%
 #define FEED_OVERRIDE_COARSE_INCREMENT   10 // (1-99). Usually 10%.
 #define FEED_OVERRIDE_FINE_INCREMENT      1 // (1-99). Usually 1%.
